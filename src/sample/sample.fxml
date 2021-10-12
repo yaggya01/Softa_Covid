@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="331.0" prefWidth="420.0">
+         <children>
+            <Button fx:id="logb" layoutX="128.0" layoutY="124.0" mnemonicParsing="false" onAction="#on_log_in" prefHeight="63.0" prefWidth="164.0" text="LOGIN USER" />
+            <Button fx:id="signb" layoutX="128.0" layoutY="225.0" mnemonicParsing="false" onAction="#on_sign_in" prefHeight="63.0" prefWidth="164.0" text="SIGNUP" />
+            <Button fx:id="logo" layoutX="128.0" layoutY="23.0" mnemonicParsing="false" onAction="#on_log_of" prefHeight="63.0" prefWidth="164.0" text="LOGIN OFFICIAL" />
+         </children>
+      </Pane>
+   </children>
+</GridPane>

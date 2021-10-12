@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUP.SignUP">
+   <children>
+      <TextField fx:id="UTF" layoutX="226.0" layoutY="57.0" />
+      <TextField fx:id="ETF" layoutX="226.0" layoutY="110.0" />
+      <TextField fx:id="PTF" layoutX="226.0" layoutY="160.0" />
+      <TextField fx:id="PASSTF" layoutX="226.0" layoutY="215.0" />
+      <Label layoutX="226.0" layoutY="40.0" text="UserName" />
+      <Label layoutX="226.0" layoutY="93.0" text="Email" />
+      <Label layoutX="226.0" layoutY="143.0" prefHeight="18.0" prefWidth="56.0" text="Phone" />
+      <Label layoutX="226.0" layoutY="200.0" prefHeight="18.0" prefWidth="56.0" text="Password" />
+      <Button fx:id="Sbutton" layoutX="261.0" layoutY="269.0" mnemonicParsing="false" onAction="#sAction" prefHeight="38.0" prefWidth="77.0" text="Sign Up" />
+      <Label fx:id="lable" layoutX="225.0" layoutY="321.0" prefHeight="38.0" prefWidth="149.0" />
+   </children>
+</AnchorPane>
