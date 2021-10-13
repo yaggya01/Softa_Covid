@@ -38,7 +38,7 @@ public class HandleClient_Username implements Runnable {
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     if (m.k == 0) {
-                        String q = "Select * from USER where Name=";
+                        String q = "Select * from USER where Number=";
                         q = q + '"';
                         q = q + m.name;
                         q = q + '"';
@@ -51,7 +51,11 @@ public class HandleClient_Username implements Runnable {
                         if (result.next()) {
                             String g = result.getString("Password");
                             if (m.password.equals(g)) {
-                                k = new Message_otp(0);
+                                Random rand = new Random();
+                                int otp= rand.nextInt(9999);
+                                JavaMailUtil.sendMail(result.getString("Email"),otp);
+                                k = new Message_otp(otp);
+                                System.out.println(k);
                             } else {
                                 k = new Message_otp(2);
                             }
