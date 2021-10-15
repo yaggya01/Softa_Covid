@@ -1,6 +1,9 @@
 package LOGIN_OFFICIAL;
 
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -10,6 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import Message.*;
+import javafx.stage.Stage;
 
 public class Login{
     public Button lbt;
@@ -33,6 +37,17 @@ public class Login{
             oi = new ObjectInputStream(socket.getInputStream());
             m= (Message_otp) oi.readObject();
             System.out.println("OTP: " + m.otp);
+            if(m.otp==0){
+                Parent root=null;
+                Stage stage = (Stage) lbt.getScene().getWindow();
+                try{
+                    root = FXMLLoader.load(getClass().getResource("./dashBoard_official.fxml"));
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+                stage.setScene(new Scene(root,600, 400));
+            }
         }
         catch(IOException e) {
             e.printStackTrace();

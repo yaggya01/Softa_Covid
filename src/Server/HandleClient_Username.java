@@ -81,12 +81,13 @@ public class HandleClient_Username implements Runnable {
                             op.writeObject(new Message_otp(1));
                             return;
                         }
-                        String query1 = "Insert into USER values (?,?,?,?)";
+                        String query1 = "Insert into USER values (?,?,?,?,?)";
                         preSat = connection.prepareStatement(query1);
                         preSat.setString(1, m.name);
                         preSat.setLong(2, m.num);
                         preSat.setString(3, m.email);
                         preSat.setString(4, m.password);
+                        preSat.setInt(5,0 );
                         System.out.println(query1);
                         preSat.execute();
                         op.writeObject(new Message_otp(0));
@@ -130,6 +131,42 @@ public class HandleClient_Username implements Runnable {
                         }
                         op.writeObject(k);
                         op.flush();
+                    }
+                }
+                else if(m.t==Message.job.Vac_update){
+                    System.out.println("HIIII");
+                    String url = "jdbc:mysql://localhost:3306/Covid";
+                    Connection connection = DriverManager.getConnection(url, "root", "");
+                    String q = "Select * from USER where Number=";
+                    q = q + '"';
+                    q = q + m.num;
+                    q = q + '"';
+                    q = q + ';';
+                    System.out.println(q);
+                    PreparedStatement preSat;
+                    preSat = connection.prepareStatement(q);
+                    ResultSet result = preSat.executeQuery();
+                    if(result.next()){
+
+                        op.writeObject(new Message_otp(result.getInt("VacStatus")));
+
+                        if(result.getInt("VacStatus")==2){
+                            System.out.println("popop");
+                            return;
+                        }
+                        System.out.println("popoqqq");
+                        Message_otp k = (Message_otp) oi.readObject();
+                        System.out.println(k);
+                        String t = "Update User set VacStatus = ";
+                        t+=k.otp;
+                        t+=" Where Number=";
+                        t = t + '"';
+                        t = t + m.num;
+                        t = t + '"';
+                        t = t + ';';
+                        System.out.println(t);
+                        preSat = connection.prepareStatement(t);
+                        preSat.executeUpdate();
                     }
                 }
             }

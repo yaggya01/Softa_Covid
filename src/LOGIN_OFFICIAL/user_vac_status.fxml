@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.user_vac_status">
+   <children>
+      <TextField fx:id="number" layoutX="226.0" layoutY="78.0" />
+      <Label layoutX="227.0" layoutY="47.0" prefHeight="18.0" prefWidth="149.0" text="Phone Number" />
+      <Button fx:id="updateBT" layoutX="227.0" layoutY="250.0" mnemonicParsing="false" onAction="#BTupdate" prefHeight="26.0" prefWidth="89.0" text="Update" />
+      <Button fx:id="status_bt" layoutX="418.0" layoutY="78.0" mnemonicParsing="false" onAction="#btStatus" prefHeight="26.0" prefWidth="90.0" text="Get Staus" />
+      <Label fx:id="staus_vac" layoutX="418.0" layoutY="116.0" prefHeight="18.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="UpStat" layoutX="225.0" layoutY="174.0" prefWidth="150.0" />
+      <Label layoutX="227.0" layoutY="148.0" prefHeight="18.0" prefWidth="150.0" text="Update Vaccine Status" />
+   </children>
+</AnchorPane>
