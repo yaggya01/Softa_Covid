@@ -83,13 +83,13 @@ public class HandleClient_Username implements Runnable {
                             op.writeObject(new Message_otp(1));
                             return;
                         }
-                        String query1 = "Insert into USER values (?,?,?,?,?)";
+                        String query1 = "Insert into USER values (?,?,?,?)";
                         preSat = connection.prepareStatement(query1);
                         preSat.setString(1, m.name);
                         preSat.setLong(2, m.num);
                         preSat.setString(3, m.email);
                         preSat.setString(4, m.password);
-                        preSat.setInt(5,0 );
+//                        preSat.setInt(5,0 );
                         System.out.println(query1);
                         preSat.execute();
                         op.writeObject(new Message_otp(0));
