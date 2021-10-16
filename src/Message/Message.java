@@ -6,7 +6,7 @@ public class Message implements Serializable{
      *
      */
     public enum job{
-        login,signup,login_gov,Vac_update
+        login,signup,login_gov,Vac_update, Time
     }
     private static final long serialVersionUID = 1L;
     public String name;
@@ -29,8 +29,11 @@ public class Message implements Serializable{
         else if(j==2){
             t=job.login_gov;
         }
-        else{
+        else if(j==3){
             t=job.Vac_update;
+        }
+        else{
+            t=job.Time;
         }
     }
     public String toString(){

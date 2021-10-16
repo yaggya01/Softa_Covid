@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -13,9 +14,21 @@
    <children>
       <Pane prefHeight="331.0" prefWidth="420.0">
          <children>
-            <Button fx:id="logb" layoutX="128.0" layoutY="124.0" mnemonicParsing="false" onAction="#on_log_in" prefHeight="63.0" prefWidth="164.0" text="LOGIN USER" />
-            <Button fx:id="signb" layoutX="128.0" layoutY="225.0" mnemonicParsing="false" onAction="#on_sign_in" prefHeight="63.0" prefWidth="164.0" text="SIGNUP" />
-            <Button fx:id="logo" layoutX="128.0" layoutY="23.0" mnemonicParsing="false" onAction="#on_log_of" prefHeight="63.0" prefWidth="164.0" text="LOGIN OFFICIAL" />
+            <Button fx:id="logb" layoutX="145.0" layoutY="44.0" mnemonicParsing="false" onAction="#on_log_in" prefHeight="33.0" prefWidth="121.0" text="LOGIN USER" />
+            <Button fx:id="signb" layoutX="285.0" layoutY="44.0" mnemonicParsing="false" onAction="#on_sign_in" prefHeight="33.0" prefWidth="121.0" text="SIGNUP" />
+            <Button fx:id="logo" layoutX="6.0" layoutY="44.0" mnemonicParsing="false" onAction="#on_log_of" prefHeight="33.0" prefWidth="121.0" text="LOGIN OFFICIAL" />
+            <LineChart fx:id="Vaccine_chart" layoutX="49.0" layoutY="113.0" prefHeight="183.0" prefWidth="314.0" title="User Vaccinated Per Day">
+              <xAxis>
+                <CategoryAxis label="Date" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis label="People" side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <ChoiceBox fx:id="TimeBox" layoutX="130.0" layoutY="283.0" prefWidth="150.0" />
+            <Label layoutX="67.0" layoutY="287.0" prefHeight="17.0" prefWidth="48.0" text="Time" />
+            <Button fx:id="initBT" layoutX="6.0" layoutY="87.0" mnemonicParsing="false" onAction="#Linit" prefHeight="33.0" prefWidth="121.0" text="Initialize" />
+            <Button fx:id="getBT" layoutX="304.0" layoutY="284.0" mnemonicParsing="false" onAction="#BTget" text="GET" />
          </children>
       </Pane>
    </children>
