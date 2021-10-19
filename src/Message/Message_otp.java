@@ -15,6 +15,9 @@ public class Message_otp implements Serializable{
         user=u;
     }
     public String toString() {
-        return "OTP: " + otp + "\n" + user.toString();
+        if(user==null) {
+            return "OTP: " + otp ;
+        }
+        return "OTP: " + otp + "\n" + user;
     }
 }

@@ -43,7 +43,7 @@ public class LoginUser{
                         oi = new ObjectInputStream(socket.getInputStream());
                         m= (Message_otp) oi.readObject();
                         System.out.println("LoginUser OTP: " + m.otp);
-                        System.out.println("LoginUser user: " + m.user.toString());
+                        System.out.println("LoginUser user: " + m.user);
                     }
                     catch(Exception e) {
                         e.printStackTrace();
