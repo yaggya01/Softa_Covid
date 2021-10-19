@@ -2,13 +2,20 @@ package SearchByUser;
 
 import Message.Returned_SearchMessage;
 import Message.SearchMessage;
+import User.User;
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -24,8 +31,11 @@ public class SearchByUser {
     public Socket socket;
     ObjectInputStream oi = null;
     Returned_SearchMessage m;
+
+    private User user;
+
     public void Searching(ActionEvent actionEvent)throws Exception {
-        System.out.println("in searchByUser.java");
+        System.out.println("in searchByUser.java -> User: " + user.getEmail());
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -46,7 +56,7 @@ public class SearchByUser {
                             Platform.runLater(new Runnable() {
                                 @Override
                                 public void run() {
-                                    NotFoundLabel.setText("Not Found Anytihng");
+                                    NotFoundLabel.setText("Not Found Anything");
                                 }
                             });
                         }else{
@@ -73,4 +83,9 @@ public class SearchByUser {
 
         }).start();
     }
+
+    public void initSearchByUserData(User u) throws IOException {
+        user = u;
+    }
+
 }

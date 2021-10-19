@@ -1,20 +1,17 @@
 package LOGIN_USER;
 
 
-import javafx.application.Platform;
+import HomePage.HomePage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.URL;
 
 import Message.*;
 import javafx.stage.Stage;
@@ -45,7 +42,8 @@ public class LoginUser{
                     try{
                         oi = new ObjectInputStream(socket.getInputStream());
                         m= (Message_otp) oi.readObject();
-                        System.out.println("OTP: " + m.otp);
+                        System.out.println("LoginUser OTP: " + m.otp);
+                        System.out.println("LoginUser user: " + m.user.toString());
                     }
                     catch(Exception e) {
                         e.printStackTrace();
@@ -62,20 +60,22 @@ public class LoginUser{
     public void lbt(ActionEvent actionEvent)throws Exception {
         if(m.otp==Integer.parseInt(OTfield.getText())){
             lb_verified.setText("Verified");
-            Parent root=null;
-            Stage stage = (Stage) lgbt.getScene().getWindow();
-            URL url = getClass().getResource("../SearchByUser/SearchByUser.fxml");
-            if(url != null){
-                try{
-                    root = FXMLLoader.load(url);
-                }
-                catch (IOException e){
-                    e.printStackTrace();
-                }
-                stage.setScene(new Scene(root,600, 400));
-            }else{
-                System.out.println("NOt LOADED");
-            }
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "../HomePage/HomePage.fxml"
+                    )
+            );
+
+            Stage stage = (Stage) lb_verified.getScene().getWindow();
+//            stage.hide();
+            stage.setScene(
+                    new Scene(loader.load(), 800, 500)
+            );
+
+            HomePage controller = loader.getController();
+            controller.initHomePageData(m.user);
+
+//            stage.show();
         }
         else{
             lb_verified.setText("Wrong OTP");

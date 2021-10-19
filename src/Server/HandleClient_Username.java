@@ -1,19 +1,15 @@
 package Server;
 
 import Message.*;
+import User.User;
 
 import java.net.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.io.*;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.StringTokenizer;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+
 import java.util.Random;
 
 public class HandleClient_Username implements Runnable {
@@ -52,12 +48,15 @@ public class HandleClient_Username implements Runnable {
                         Message_otp k;
                         if (result.next()) {
                             String g = result.getString("Password");
+                            ResultSetMetaData metadata = result.getMetaData();
+                            int columnCount = metadata.getColumnCount();
                             if (m.password.equals(g)) {
                                 Random rand = new Random();
                                 int otp= rand.nextInt(9999);
                                 JavaMailUtil.sendMail(result.getString("Email"),otp);
-                                k = new Message_otp(otp);
-                                System.out.println(k);
+                                User user = getUser(result);
+                                k = new Message_otp(otp, user);
+                                System.out.println("HandleClient_Username -> " + k);
                             } else {
                                 k = new Message_otp(2);
                             }
@@ -258,4 +257,34 @@ public class HandleClient_Username implements Runnable {
             e.printStackTrace();
         }
     }
+
+    User getUser(ResultSet resultSet) throws SQLException {
+        ResultSetMetaData metadata = resultSet.getMetaData();
+        int numberOfCols = metadata.getColumnCount();
+
+        User user = new User();
+
+        for(int i=1; i <= numberOfCols; i ++) {
+            switch (metadata.getColumnName(i)) {
+                case "Name":
+                    user.setName(resultSet.getString(i));
+                    break;
+                case "Number":
+                    user.setNumber(resultSet.getString(i));
+                    break;
+                case "email":
+                    user.setEmail(resultSet.getString(i));
+                    break;
+                case "IdProof":
+                    user.setIdProof(resultSet.getBytes(i));
+                    break;
+                case "Photo":
+                    user.setPhoto(resultSet.getBytes(i));
+                    break;
+            }
+        }
+
+        return user;
+    }
+
 }
