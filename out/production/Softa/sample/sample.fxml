@@ -19,7 +19,7 @@
             <Button fx:id="logo" layoutX="6.0" layoutY="44.0" mnemonicParsing="false" onAction="#on_log_of" prefHeight="33.0" prefWidth="121.0" text="LOGIN OFFICIAL" />
             <LineChart fx:id="Vaccine_chart" layoutX="49.0" layoutY="113.0" prefHeight="183.0" prefWidth="314.0" title="User Vaccinated Per Day">
               <xAxis>
-                <CategoryAxis label="Date" side="BOTTOM" />
+                <CategoryAxis label="Days" side="BOTTOM" />
               </xAxis>
               <yAxis>
                 <NumberAxis label="People" side="LEFT" />

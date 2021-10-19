@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomePage.HomePage">
+   <Label layoutX="242.0" layoutY="76.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="90.0" text="Name" />
+   <Label layoutX="238.0" layoutY="146.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="107.0" text="First Dose Status" />
+   <Label layoutX="238.0" layoutY="181.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="107.0" text="Second Dose Status" />
+   <Label layoutX="242.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="90.0" text="Email" />
+   <Label layoutX="231.0" layoutY="295.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="90.0" text="Number" />
+   <Label fx:id="idProofWarningLabel" layoutX="333.0" layoutY="264.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="392.0" text="-" textFill="#a73636" />
+   <Label layoutX="212.0" layoutY="230.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="90.0" text="Id Proof" />
+   <Label fx:id="secondDoseStatusLabel" layoutX="386.0" layoutY="177.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="303.0" text="-" />
+   <Label fx:id="firstDoseStatusLabel" layoutX="387.0" layoutY="142.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="303.0" text="-" />
+   <Label fx:id="nameLabel" layoutX="386.0" layoutY="72.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="303.0" text="-" />
+   <Label fx:id="emailLabel" layoutX="386.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="303.0" text="-" />
+   <Label fx:id="numberLabel" layoutX="389.0" layoutY="293.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="266.0" text="-" />
+   <Button fx:id="choosePhotoButton" layoutX="68.0" layoutY="217.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#choosePhotoButtonAction" prefHeight="26.0" prefWidth="90.0" text="Choose Photo">
+      <font>
+         <Font size="10.0" />
+      </font>
+   </Button>
+   <Hyperlink fx:id="downloadIdProofLink" alignment="CENTER" layoutX="316.0" layoutY="226.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#downloadIdProofAction" prefHeight="26.0" prefWidth="124.0" text="Download" />
+   <Hyperlink fx:id="downloadCertificateLink" alignment="CENTER" layoutX="38.0" layoutY="357.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="238.0" text="Download Certificate" />
+   <Button fx:id="chooseIdProofButton" layoutX="471.0" layoutY="226.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseIdProofButtonAction" prefHeight="26.0" prefWidth="75.0" text="Choose File">
+      <font>
+         <Font size="10.0" />
+      </font>
+   </Button>
+   <Button fx:id="uploadIdProofButton" layoutX="569.0" layoutY="226.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#uploadIdProofButtonAction" prefHeight="26.0" prefWidth="90.0" text="Upload Id Proof">
+      <font>
+         <Font size="10.0" />
+      </font>
+   </Button>
+   <Button fx:id="logoutButton" contentDisplay="CENTER" layoutX="607.0" layoutY="23.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logoutButtonAction" prefHeight="35.0" prefWidth="75.0" text="Log Out" textAlignment="CENTER" textFill="#cf154d" />
+   <Button fx:id="uploadPhotoButton" layoutX="68.0" layoutY="262.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#uploadPhotoButtonAction" prefHeight="26.0" prefWidth="90.0" text="Upload Photo">
+      <font>
+         <Font size="10.0" />
+      </font>
+   </Button>
+   <ImageView fx:id="photoImageView" fitHeight="150.0" fitWidth="200.0" layoutX="38.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@man.png" />
+      </image>
+   </ImageView>
+   <Button fx:id="searchSlotsButton" layoutX="319.0" layoutY="362.0" mnemonicParsing="false" onAction="#searchSlotsButtonAction" text="Search Slots" />
+</AnchorPane>
