@@ -1,6 +1,7 @@
-package SignUP;
+package signup_official;
 
-import Message.*;
+import Message.Message;
+import Message.Message_otp;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -18,23 +19,22 @@ import java.net.Socket;
 
 import static java.lang.Thread.sleep;
 
-public class SignUP{
-    public Button Sbutton;
-    public TextField UTF;
-    public TextField NTF;
-    public TextField ETF;
-    public TextField PhTF;
-    public TextField PASSTF;
+public class SignUP {
+    public Button signup_button;
+    public TextField username_textfield;
+    public TextField number_textfield;
+    public TextField email_textfield;
+    public TextField password_textfield;
     public Label lable;
-    public void sAction(ActionEvent actionEvent)throws Exception {
-        System.out.println("in sign up");
+    public void signup(ActionEvent actionEvent)throws Exception {
+        System.out.println("in sign up official");
         try {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        Message m = new Message(UTF.getText(),NTF.getText(), ETF.getText(), PASSTF.getText(),0,1);
-                        m.num=Long.parseLong(PhTF.getText());
+                        Message m = new Message(username_textfield.getText(),"",email_textfield.getText(), password_textfield.getText(),0,10);
+                        m.num=Long.parseLong(number_textfield.getText());
                         Socket socket = new Socket("localhost",5400);
                         ObjectOutputStream op = new ObjectOutputStream(socket.getOutputStream());
                         ObjectInputStream oi = new ObjectInputStream(socket.getInputStream());
@@ -43,13 +43,13 @@ public class SignUP{
                         Message_otp mo=(Message_otp) oi.readObject();
                         System.out.println(mo);
                         if(mo.otp==1){
-                            System.out.println("in sign up and this username is already taken");
+                            System.out.println("in sign up official and this username is already taken");
                             lable.setText("Already Taken So try other username");
                         }
                         else{
-                            lable.setText("Successfully account created");
+                            lable.setText("Successfully official account created");
                             Parent root=null;
-                            Stage stage = (Stage) Sbutton.getScene().getWindow();
+                            Stage stage = (Stage) signup_button.getScene().getWindow();
                             try{
                                 root = FXMLLoader.load(getClass().getResource("../Sample/sample.fxml"));
                             }

@@ -86,7 +86,7 @@ public class HomePage {
 
     public void choosePhotoButtonAction(ActionEvent event) {
         FileChooser fc = new FileChooser();
-        fc.setInitialDirectory(new File("F:\\projects"));
+        fc.setInitialDirectory(new File("D:\\photos"));
         fc.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("jpg Files", "*.jpg")
         );
@@ -182,7 +182,8 @@ public class HomePage {
             Image image = SwingFXUtils.toFXImage(img, null);
             photoImageView.setImage(image);
         } else {
-            Image image = new Image("man.png");
+//            Image image = new Image("man.png");
+            Image image  = new Image(getClass().getResourceAsStream("man.png "));
             System.out.println("image : " + image);
             photoImageView.setImage(image);
         }

@@ -2,6 +2,7 @@ package Server;
 
 import Message.Returned_SearchMessage;
 import Message.SearchMessage;
+import Message.Temp;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -47,35 +48,31 @@ public class HandleClient_SearchByUser implements Runnable {
                 System.out.println(q);
                 PreparedStatement preSat;
                 preSat = connection.prepareStatement(q);
-                ResultSet result = preSat.executeQuery();
-                Returned_SearchMessage k;
-                v = new ArrayList<String>();
-//                if (result.next()) {
-                    System.out.println("gfhgv ghrjk");
-//                    String g = result.getString("Password");
-//                    if (m.password.equals(g)) {
-//                        Random rand = new Random();
-//                        int otp= rand.nextInt(9999);
-//                        JavaMailUtil.sendMail(result.getString("Email"),otp);
-//                        k = new Message_otp(otp);
-//                        System.out.println(k);
-//                    } else {
-//                        k = new Message_otp(2);
-//                    }
-                    while(result.next()){
-                        //Retrieve by column name
-                        String s = "";
-                        s = s + result.getString("Name");
-                        s = s + result.getString("City");
-                        s = s + result.getString("State");
-                        System.out.println(s);
-                        v.add(s);
+                ResultSet rs = preSat.executeQuery();
+                Returned_SearchMessage obj = new Returned_SearchMessage();
+                while(rs.next()){
+                    Temp tmp_obj = new Temp();
+                    tmp_obj.hospital_name = rs.getString("name");
+                    tmp_obj.address = rs.getString("address") + rs.getString("city") + rs.getString("state");
+                    Integer hid = rs.getInt("HID");
+                    String q2 = "Select * from vaccine_cnt where HID=";
+                    q2 = q2 + hid;
+                    q2 = q2 + ';';
+                    PreparedStatement preSat2;
+                    preSat2 = connection.prepareStatement(q2);
+                    ResultSet rs2 = preSat2.executeQuery();
+                    while(rs2.next()){
+                        String vaccine_name = rs2.getString("vaccine_name");
+                        int cnt = rs2.getInt("rem");
+                        if(vaccine_name.equals("covaxin")){
+                            tmp_obj.covaxin_cnt = cnt;
+                        }else{
+                            tmp_obj.covishield_cnt = cnt;
+                        }
                     }
-                    k = new Returned_SearchMessage(v);
-//                } else {
-//                    k = new Returned_SearchMessage(v);
-//                }
-                op.writeObject(k);
+                    obj.ans.add(tmp_obj);
+                }
+                op.writeObject(obj);
                 op.flush();
             }
         } catch (Exception e) {

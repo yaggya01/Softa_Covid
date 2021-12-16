@@ -36,9 +36,9 @@ public class HandleClient_Username implements Runnable {
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     if (m.k == 0) {
-                        String q = "Select * from USER where Number=";
+                        String q = "Select * from USER where username=";
                         q = q + '"';
-                        q = q + m.name;
+                        q = q + m.username;
                         q = q + '"';
                         q = q + ';';
                         System.out.println(q);
@@ -71,8 +71,10 @@ public class HandleClient_Username implements Runnable {
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     if (m.k == 0) {
-                        String q = "Select * from USER where Number=";
-                        q+=m.num;
+                        String q = "Select * from USER where username=";
+                        q += '"';
+                        q+=m.username;
+                        q += '"';
                         q+=";";
                         PreparedStatement preSat;
                         preSat = connection.prepareStatement(q);
@@ -82,14 +84,44 @@ public class HandleClient_Username implements Runnable {
                             op.writeObject(new Message_otp(1));
                             return;
                         }
-                        String query1 = "Insert into USER values (?,?,?,?,?,?)";
+                        String query1 = "Insert into USER values (?,?,?,?,?,?,?,?)";
                         preSat = connection.prepareStatement(query1);
-                        preSat.setString(1, m.name);
+                        preSat.setString(1, m.username);
+                        preSat.setString(2, m.name);
+                        preSat.setLong(3, m.num);
+                        preSat.setString(4, m.email);
+                        preSat.setString(5, m.password);
+                        preSat.setBytes(6, null);
+                        preSat.setBytes(7, null);
+                        preSat.setBytes(8, null);
+                        System.out.println(query1);
+                        preSat.execute();
+                        op.writeObject(new Message_otp(0));
+                        return;
+                    }
+                }else if (m.t == Message.job.signup_official) {
+                    String url = "jdbc:mysql://localhost:3306/Covid";
+                    Connection connection = DriverManager.getConnection(url, "root", "");
+                    if (m.k == 0) {
+                        String q = "Select * from govt_official where username=";
+                        q += '"';
+                        q+=m.username;
+                        q += '"';
+                        q+=";";
+                        PreparedStatement preSat;
+                        preSat = connection.prepareStatement(q);
+                        ResultSet result = preSat.executeQuery();
+                        if (result.next()) {
+                            System.out.println("User Name: " + result.getString("Name") + " Password: " + result.getString("Password") + " Email: " + result.getString("Email"));
+                            op.writeObject(new Message_otp(1));
+                            return;
+                        }
+                        String query1 = "Insert into govt_official values (?,?,?,?)";
+                        preSat = connection.prepareStatement(query1);
+                        preSat.setString(1, m.username);
                         preSat.setLong(2, m.num);
                         preSat.setString(3, m.email);
                         preSat.setString(4, m.password);
-                        preSat.setBytes(5, null);
-                        preSat.setBytes(6, null);
                         System.out.println(query1);
                         preSat.execute();
                         op.writeObject(new Message_otp(0));
@@ -100,9 +132,9 @@ public class HandleClient_Username implements Runnable {
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     if (m.k == 0) {
-                        String q = "Select * from USER where Name=";
+                        String q = "Select * from govt_official where username=";
                         q = q + '"';
-                        q = q + m.name;
+                        q = q + m.username;
                         q = q + '"';
                         q = q + ';';
                         System.out.println(q);
@@ -112,93 +144,85 @@ public class HandleClient_Username implements Runnable {
                         Message_otp k = null;
                         if (result.next()) {
                             String g = result.getString("Password");
+                            ResultSetMetaData metadata = result.getMetaData();
+                            int columnCount = metadata.getColumnCount();
                             if (m.password.equals(g)) {
-                                String p = "Select * from Government where Number=";
-                                p = p + '"';
-                                p = p + result.getString("Number");;
-                                p = p + '"';
-                                p = p + ';';
-                                System.out.println(p);
-                                PreparedStatement l;
-                                l = connection.prepareStatement(p);
-                                ResultSet r = l.executeQuery();
-                                if(r.next()){
-                                    k = new Message_otp(0);
-                                }
+                                Random rand = new Random();
+                                int otp= rand.nextInt(9999)+3;
+                                JavaMailUtil.sendMail(result.getString("Email"),otp);
+                                User user = getUser(result);
+                                if(user == null)
+                                System.out.println("User is null");
+                                k = new Message_otp(otp, user);
+                                System.out.println("HandleClient_Username -> " + k);
                             } else {
                                 k = new Message_otp(2);
                             }
                         } else {
+                            System.out.println("Resultset is null");
                             k = new Message_otp(1);
                         }
                         op.writeObject(k);
                         op.flush();
                     }
                 }
-                else if(m.t==Message.job.Vac_update){
-                    System.out.println("HIIII");
+                else if(m.t == Message.job.Vac_status){
+                    System.out.println("In Vac_status of Handleclient");
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
-                    String q = "Select * from Vaccination where Number=";
+                    String q = "Select * from doses where username=";
                     q = q + '"';
-                    q = q + m.num;
+                    q = q + m.username;
                     q = q + '"';
                     q = q + ';';
                     System.out.println(q);
                     PreparedStatement preSat;
                     preSat = connection.prepareStatement(q);
                     ResultSet result = preSat.executeQuery();
-                    if(result.next()){
-
-                        op.writeObject(new Message_otp(result.getInt("VacStatus")));
-
-                        if(result.getInt("VacStatus")==2){
-                            System.out.println("popop");
-                            return;
-                        }
-                        System.out.println("popoqqq");
-                        Message_otp k = (Message_otp) oi.readObject();
-                        System.out.println(k);
-                        String t = "Update Vaccination set VacStatus = ";
-                        t+=k.otp;
-                        t+=" Where Number=";
-                        t = t + '"';
-                        t = t + m.num;
-                        t = t + '"';
-                        t = t + ';';
-                        System.out.println(t);
-                        preSat = connection.prepareStatement(t);
-                        preSat.executeUpdate();
+                    Status_Message obj = new Status_Message();
+                    while(result.next()){
+                        String s = "";
+                        s = s + "Vaccine: ";
+                        s = s + result.getString("vaccine_name");
+                        s = s + " Which Dose: ";
+                        s = s + result.getInt("which_dose");
+                        s = s + " Date: ";
+                        s = s + result.getDate("date");
+                        s = s + " Status: ";
+                        s = s + (result.getBoolean("done") ? "Taken\n" : "Not taken\n");
+                        System.out.println(s);
+                        obj.v.add(s);
                     }
-                    else{
-                        op.writeObject(new Message_otp(0));
-                        Message_otp k = (Message_otp) oi.readObject();
-                        System.out.println(k);
-                        SimpleDateFormat ft =
-                                new SimpleDateFormat("yyyy-MM-dd");
-                        Date dateobj = new Date();
-                        System.out.println(ft.format(dateobj));
-                        String query1 = "Insert into Vaccination values (?,?,?)";
-                        preSat = connection.prepareStatement(query1);
-                        preSat.setLong(1, m.num);
-                        preSat.setDate(2, java.sql.Date.valueOf((ft.format(dateobj))));
-                        preSat.setInt(3, k.otp);
-                        System.out.println(query1);
-                        preSat.execute();
-                    }
+                    op.writeObject(obj);
+                    op.flush();
+                }
+                else if(m.t==Message.job.Vac_update){
+                    System.out.println("HIIII");
+                    String url = "jdbc:mysql://localhost:3306/Covid";
+                    Connection connection = DriverManager.getConnection(url, "root", "");
+                    String q = "Update doses set done = 1 where username = ";
+                    q = q + '"';
+                    q = q + m.username;
+                    q = q + '"';
+                    q = q + ';';
+                    System.out.println(q);
+                    PreparedStatement preSat;
+                    preSat = connection.prepareStatement(q);
+                    preSat.executeUpdate();
+
                 }
                 else if(m.t==Message.job.Time){
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     if(m.k==0){
-                        String q="Select Count(Distinct(Date)) As Ans from Vaccination";
+                        String q="Select Count(Distinct(Date)) As Ans from doses where done = 1";
                         System.out.println(q);
                         PreparedStatement preSat;
                         preSat = connection.prepareStatement(q);
                         ResultSet result = preSat.executeQuery();
                         if(result.next()){
-                            Message_Time_Graph k = new Message_Time_Graph(result.getInt("Ans")+1);
-                            q="Select Count(Distinct(Number)) as Ans, Date From Vaccination As v where exists( Select Distinct(Date) As Date from Vaccination);";
+                            Message_Time_Graph k = new Message_Time_Graph(result.getInt("Ans")+2);
+                            q="Select Count(Distinct(username)) as Ans, Date From doses As v where exists( Select Distinct(Date) As Date from doses where done = 1);";
                             preSat = connection.prepareStatement(q);
                             result = preSat.executeQuery();
                             int i=0;
@@ -216,7 +240,7 @@ public class HandleClient_Username implements Runnable {
                     }
                     else if(m.k==1){
                         Message_Time_Graph k = new Message_Time_Graph(31);
-                        String q="Select Count(Distinct(Number)) as Ans, Date From Vaccination As v where exists( Select Distinct(Date) As Date from Vaccination Order by Date DESC);";
+                        String q="Select Count(Distinct(username)) as Ans, Date From doses As v where exists( Select Distinct(Date) As Date from doses Order by Date DESC);";
                         PreparedStatement preSat;
                         preSat = connection.prepareStatement(q);
                         ResultSet result = preSat.executeQuery();
@@ -235,7 +259,7 @@ public class HandleClient_Username implements Runnable {
                     }
                     else if(m.k==2){
                         Message_Time_Graph k = new Message_Time_Graph(8);
-                        String q="Select Count(Distinct(Number)) as Ans, Date From Vaccination As v where exists( Select Distinct(Date) As Date from Vaccination Order by Date DESC);";
+                        String q="Select Count(Distinct(username)) as Ans, Date From doses As v where exists( Select Distinct(Date) As Date from doese Order by Date DESC);";
                         PreparedStatement preSat;
                         preSat = connection.prepareStatement(q);
                         ResultSet result = preSat.executeQuery();
@@ -267,10 +291,13 @@ public class HandleClient_Username implements Runnable {
 
         for(int i=1; i <= numberOfCols; i ++) {
             switch (metadata.getColumnName(i)) {
-                case "Name":
+                case "username":
+                    user.setUsername(resultSet.getString(i));
+                    break;
+                case "name":
                     user.setName(resultSet.getString(i));
                     break;
-                case "Number":
+                case "number":
                     user.setNumber(resultSet.getString(i));
                     break;
                 case "email":

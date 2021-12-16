@@ -19,15 +19,15 @@ import javafx.stage.Stage;
 public class LoginUser{
     public Button btotp;
     public Button lgbt;
-    public TextField UTfield;
-    public TextField ETfield;
-    public TextField OTfield;
+    public TextField UTF;
+    public TextField OTF;
+    public TextField PASSTF;
     public Socket socket;
     public Label lb_verified;
     Message_otp m;
     ObjectInputStream oi=null;
     public void lb(javafx.event.ActionEvent actionEvent)throws Exception {
-        System.out.println("hello");
+        System.out.println("generating otp");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -35,9 +35,9 @@ public class LoginUser{
                     System.out.println("Thread");
                     socket = new Socket("localhost",5400);
                     ObjectOutputStream op = new ObjectOutputStream(socket.getOutputStream());
-                    String name=UTfield.getText();
-                    String password = ETfield.getText();
-                    op.writeObject(new Message(name,password,"email",0,0));
+                    String username=UTF.getText();
+                    String password = PASSTF.getText();
+                    op.writeObject(new Message(username,"Name","email",password, 0,0));
                     op.flush();
                     try{
                         oi = new ObjectInputStream(socket.getInputStream());
@@ -58,7 +58,7 @@ public class LoginUser{
     }
 
     public void lbt(ActionEvent actionEvent)throws Exception {
-        if(m.otp==Integer.parseInt(OTfield.getText())){
+        if(m.otp==Integer.parseInt(OTF.getText())){
             lb_verified.setText("Verified");
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource(
@@ -78,7 +78,7 @@ public class LoginUser{
 //            stage.show();
         }
         else{
-            lb_verified.setText("Wrong OTP");
+            lb_verified.setText("Wrong OTP :(");
         }
     }
 }

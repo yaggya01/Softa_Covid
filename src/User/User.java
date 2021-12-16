@@ -4,10 +4,11 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    private String name, number, email;
+    private String username, name, number, email;
     private byte[] idProof,photo;
 
     public User() {
+    username = "";
         name="";
         number="";
         email="";
@@ -15,22 +16,27 @@ public class User implements Serializable {
         photo = null;
     }
 
-    public User(String uName, String uNumber, String uEmail, byte[] uIdProof, byte[] uPhoto)
+    public User(String username, String name, String number, String email, byte[] uIdProof, byte[] uPhoto)
     {
-        name = uName;
-        number = uNumber;
-        email = uEmail;
+        this.username = username;
+        this.name = name;
+        this.number = number;
+        this.email = email;
         idProof = uIdProof;
         photo = uPhoto;
     }
 
     public User(User u)
     {
+        username = u.username;
         name = u.name;
         number = u.number;
         email = u.email;
         idProof = u.idProof;
         photo = u.photo;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setName(String name) {
@@ -56,7 +62,7 @@ public class User implements Serializable {
     public String getName() {
         return name;
     }
-
+    public String getUsername(){return username;}
     public String getNumber() {
         return number;
     }
