@@ -73,6 +73,7 @@ public class LoginUser{
             );
 
             HomePage controller = loader.getController();
+//            System.out.println("In LoginUser and displaying value of m.user"  + m.user);
             controller.initHomePageData(m.user);
 
 //            stage.show();

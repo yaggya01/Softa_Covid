@@ -167,9 +167,13 @@ public class HomePage {
 
     public void initHomePageData(User u) throws IOException {
         user = u;
-        nameLabel.setText(user.getName());
-        emailLabel.setText(user.getEmail());
-        numberLabel.setText(user.getNumber());
+        System.out.println("In HomePage and displaying value of user"  + user);
+//        if(user != null){
+            nameLabel.setText(user.getName());
+            emailLabel.setText(user.getEmail());
+            numberLabel.setText(user.getNumber());
+//        }
+
         if(user.getPhoto() != null) {
 //            Image img = new Image(new ByteArrayInputStream(user.getPhoto()));
 //            BufferedImage bg = ImageIO.read((ImageInputStream) img);
