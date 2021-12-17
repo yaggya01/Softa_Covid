@@ -3,13 +3,13 @@ package Server;
 import Message.*;
 import User.User;
 
-import java.net.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.sql.*;
-import java.io.*;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import java.util.Random;
 
 public class HandleClient_Username implements Runnable {
@@ -55,6 +55,15 @@ public class HandleClient_Username implements Runnable {
                                 int otp= rand.nextInt(9999);
                                 JavaMailUtil.sendMail(result.getString("Email"),otp);
                                 User user = getUser(result);
+
+                                PreparedStatement preSat1;
+                                String q1 = "SELECT VACSTATUS FROM VACCINATION WHERE NUMBER=" + m.name + ";";
+                                preSat1 = connection.prepareStatement(q1);
+                                ResultSet result1 = preSat1.executeQuery();
+                                if(result.next()) {
+                                    user.setVaccinationStatus(result1.getInt("VACSTATUS"));
+                                }
+
                                 k = new Message_otp(otp, user);
                                 System.out.println("HandleClient_Username -> " + k);
                             } else {

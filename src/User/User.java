@@ -5,7 +5,9 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private String name, number, email;
-    private byte[] idProof,photo;
+    private byte[] idProof;
+    private byte[] photo;
+    private int vaccinationStatus;
 
     public User() {
         name="";
@@ -13,15 +15,17 @@ public class User implements Serializable {
         email="";
         idProof = null;
         photo = null;
+        vaccinationStatus=0;
     }
 
-    public User(String uName, String uNumber, String uEmail, byte[] uIdProof, byte[] uPhoto)
+    public User(String uName, String uNumber, String uEmail, byte[] uIdProof, byte[] uPhoto, int uVaccinationStatus)
     {
         name = uName;
         number = uNumber;
         email = uEmail;
         idProof = uIdProof;
         photo = uPhoto;
+        vaccinationStatus=uVaccinationStatus;
     }
 
     public User(User u)
@@ -31,6 +35,7 @@ public class User implements Serializable {
         email = u.email;
         idProof = u.idProof;
         photo = u.photo;
+        vaccinationStatus = u.vaccinationStatus;
     }
 
     public void setName(String name) {
@@ -53,6 +58,10 @@ public class User implements Serializable {
         this.photo = photo;
     }
 
+    public void setVaccinationStatus(int vaccinationStatus) {
+        this.vaccinationStatus = vaccinationStatus;
+    }
+
     public String getName() {
         return name;
     }
@@ -73,8 +82,13 @@ public class User implements Serializable {
         return photo;
     }
 
+    public int getVaccinationStatus() {
+        return vaccinationStatus;
+    }
+
     @Override
     public String toString() {
         return "Name: " + name + "\nNumber: " + number + "\nEmail: " + email + "\n";
     }
+
 }

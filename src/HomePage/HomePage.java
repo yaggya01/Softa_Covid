@@ -167,6 +167,7 @@ public class HomePage {
 
     public void initHomePageData(User u) throws IOException {
         user = u;
+        System.out.println("initHomePageData VACSTATUS : " + user.getVaccinationStatus());
         nameLabel.setText(user.getName());
         emailLabel.setText(user.getEmail());
         numberLabel.setText(user.getNumber());
@@ -200,6 +201,15 @@ public class HomePage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void downloadCertificateAction(ActionEvent actionEvent) {
+        DirectoryChooser dirChooser = new DirectoryChooser();
+        dirChooser.setTitle("Select a folder to download the Certificate");
+        File selectedDir = dirChooser.showDialog(nameLabel.getScene().getWindow());
+        String selectedDirPath = selectedDir.getAbsolutePath();
+        File file = getUniqueFileName(selectedDirPath, "CovidCertificate.pdf");
+        GenerateCertificate.generateCertificate(file, user);
     }
 
     private File getUniqueFileName(String folderName, String searchedFilename) {

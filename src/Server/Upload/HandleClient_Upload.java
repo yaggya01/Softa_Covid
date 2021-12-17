@@ -3,7 +3,10 @@ package Server.Upload;
 
 import User.User;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
@@ -115,7 +118,7 @@ public class HandleClient_Upload implements Runnable {
             e.printStackTrace();
         }
 
-        System.out.println("Id Proof inserted successfully....");
+        System.out.println(uploadType + " inserted successfully....");
     }
 
     User getUser(ResultSet resultSet) throws SQLException {
@@ -141,6 +144,8 @@ public class HandleClient_Upload implements Runnable {
                 case "Photo":
                     user.setPhoto(resultSet.getBytes(i));
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + metadata.getColumnName(i));
             }
         }
 

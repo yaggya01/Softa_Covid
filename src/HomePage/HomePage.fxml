@@ -24,7 +24,7 @@
       </font>
    </Button>
    <Hyperlink fx:id="downloadIdProofLink" alignment="CENTER" layoutX="316.0" layoutY="226.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#downloadIdProofAction" prefHeight="26.0" prefWidth="124.0" text="Download" />
-   <Hyperlink fx:id="downloadCertificateLink" alignment="CENTER" layoutX="38.0" layoutY="357.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="238.0" text="Download Certificate" />
+   <Hyperlink fx:id="downloadCertificateLink" alignment="CENTER" layoutX="38.0" layoutY="357.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#downloadCertificateAction" prefHeight="35.0" prefWidth="238.0" text="Download Certificate" />
    <Button fx:id="chooseIdProofButton" layoutX="471.0" layoutY="226.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseIdProofButtonAction" prefHeight="26.0" prefWidth="75.0" text="Choose File">
       <font>
          <Font size="10.0" />
