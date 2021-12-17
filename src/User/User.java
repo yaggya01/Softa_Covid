@@ -1,41 +1,43 @@
 package User;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class User implements Serializable {
 
-    private String name, number, email;
-    private byte[] idProof;
-    private byte[] photo;
-    private int vaccinationStatus;
+    private String username, name, number, email;
+    private byte[] idProof,photo;
 
     public User() {
+        username = "";
         name="";
         number="";
         email="";
         idProof = null;
         photo = null;
-        vaccinationStatus=0;
     }
 
-    public User(String uName, String uNumber, String uEmail, byte[] uIdProof, byte[] uPhoto, int uVaccinationStatus)
+    public User(String username, String name, String number, String email, byte[] uIdProof, byte[] uPhoto)
     {
-        name = uName;
-        number = uNumber;
-        email = uEmail;
+        this.username = username;
+        this.name = name;
+        this.number = number;
+        this.email = email;
         idProof = uIdProof;
         photo = uPhoto;
-        vaccinationStatus=uVaccinationStatus;
     }
 
     public User(User u)
     {
+        username = u.username;
         name = u.name;
         number = u.number;
         email = u.email;
         idProof = u.idProof;
         photo = u.photo;
-        vaccinationStatus = u.vaccinationStatus;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setName(String name) {
@@ -58,14 +60,11 @@ public class User implements Serializable {
         this.photo = photo;
     }
 
-    public void setVaccinationStatus(int vaccinationStatus) {
-        this.vaccinationStatus = vaccinationStatus;
-    }
 
     public String getName() {
         return name;
     }
-
+    public String getUsername(){return username;}
     public String getNumber() {
         return number;
     }
@@ -82,13 +81,9 @@ public class User implements Serializable {
         return photo;
     }
 
-    public int getVaccinationStatus() {
-        return vaccinationStatus;
-    }
-
     @Override
     public String toString() {
-        return "Name: " + name + "\nNumber: " + number + "\nEmail: " + email + "\n";
+        return "Name: " + name +  "Username: " + username +"\nNumber: " + number + "\nEmail: " + email + "\nIdProof: " + idProof + "\nPhoto: " + photo + "\n";
     }
 
 }

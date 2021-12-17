@@ -90,20 +90,20 @@ public class HandleClient_Upload implements Runnable {
         String sqlUser = "root";
         String password = "";
 
-        String sql = "UPDATE user set " + uploadType + "=? WHERE email=?";
+        String sql = "UPDATE user set " + uploadType + "=? WHERE username=?";
 
         try (Connection con = DriverManager.getConnection(url, sqlUser, password);
              PreparedStatement pst = con.prepareStatement(sql)) {
             try {
-                pst.setBinaryStream(1,new ByteArrayInputStream(fileContentBytes),fileContentBytes.length);
-                pst.setString(2, user.getEmail());
+                pst.setBinaryStream(1, new ByteArrayInputStream(fileContentBytes), fileContentBytes.length);
+                pst.setString(2, user.getUsername());
                 pst.executeUpdate();
 
-                String q = "Select * from USER where Number=?";
+                String q = "Select * from USER where username=?";
                 PreparedStatement p = con.prepareStatement(q);
-                p.setString(1, user.getNumber());
+                p.setString(1, user.getUsername());
                 ResultSet res = p.executeQuery();
-                if(res.next()) {
+                if (res.next()) {
                     User u = getUser(res);
 
                     ObjectOutputStream op = new ObjectOutputStream(socket.getOutputStream());
@@ -121,35 +121,43 @@ public class HandleClient_Upload implements Runnable {
         System.out.println(uploadType + " inserted successfully....");
     }
 
-    User getUser(ResultSet resultSet) throws SQLException {
-        ResultSetMetaData metadata = resultSet.getMetaData();
-        int numberOfCols = metadata.getColumnCount();
-
+    User getUser(ResultSet resultSet) {
         User user = new User();
+        try {
+            ResultSetMetaData metadata = resultSet.getMetaData();
+            int numberOfCols = metadata.getColumnCount();
 
-        for(int i=1; i <= numberOfCols; i ++) {
-            switch (metadata.getColumnName(i)) {
-                case "Name":
-                    user.setName(resultSet.getString(i));
-                    break;
-                case "Number":
-                    user.setNumber(resultSet.getString(i));
-                    break;
-                case "email":
-                    user.setEmail(resultSet.getString(i));
-                    break;
-                case "IdProof":
-                    user.setIdProof(resultSet.getBytes(i));
-                    break;
-                case "Photo":
-                    user.setPhoto(resultSet.getBytes(i));
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + metadata.getColumnName(i));
+            for (int i = 1; i <= numberOfCols; i++) {
+                switch (metadata.getColumnName(i)) {
+                    case "username":
+                        user.setUsername(resultSet.getString(i));
+                        break;
+                    case "name":
+                        user.setName(resultSet.getString(i));
+                        break;
+                    case "number":
+                        user.setNumber(resultSet.getString(i));
+                        break;
+                    case "email":
+                        user.setEmail(resultSet.getString(i));
+                        break;
+                    case "idproof":
+                        user.setIdProof(resultSet.getBytes(i));
+                        break;
+                    case "photo":
+                        user.setPhoto(resultSet.getBytes(i));
+                        break;
+                    case "certificate":
+                        System.out.println("Certificate HandleClient_Upload.java Line 151");
+                        break;
+                    default:
+                        System.out.println("Unexpected value: " + metadata.getColumnName(i));
+                }
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-
+        System.out.println("HandleClient 160 User:\n" + user);
         return user;
     }
-
 }

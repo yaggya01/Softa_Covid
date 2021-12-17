@@ -24,6 +24,7 @@ public class Controller {
     public Button logo;
     public Button signb;
     public Button getBT;
+    public Button signup_official_button;
     public ChoiceBox TimeBox;
     public Button initBT;
     public LineChart Vaccine_chart;
@@ -36,12 +37,24 @@ public class Controller {
             }
         });
     }
+    public void signup_official(ActionEvent actionEvent)throws Exception{
+        System.out.println("SignUP_official");
+        Parent root=null;
+        Stage stage = (Stage) logb.getScene().getWindow();
+        try{
+            root = FXMLLoader.load(getClass().getResource("../signup_official/SignUP.fxml"));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        stage.setScene(new Scene(root,600, 400));
+    }
     public void BTget(ActionEvent actionEvent)throws Exception{
         new Thread(new Runnable() {
             @Override
             public void run() {
                 if(TimeBox.getValue().equals("All Time")){
-                    Message m = new Message("","","",0,4);
+                    Message m = new Message("","","","",0, 4);
                     try {
                         Socket socket = new Socket("localhost",5400);
                         ObjectOutputStream op = new ObjectOutputStream(socket.getOutputStream());
@@ -68,7 +81,7 @@ public class Controller {
 
                 }
                 else if(TimeBox.getValue().equals("30 Days")){
-                    Message m = new Message("","","",1,4);
+                    Message m = new Message("","","","",1, 4);
                     try {
                         Socket socket = new Socket("localhost",5400);
                         ObjectOutputStream op = new ObjectOutputStream(socket.getOutputStream());
@@ -94,7 +107,7 @@ public class Controller {
 
                 }
                 else if(TimeBox.getValue().equals("One Week")){
-                    Message m = new Message("","","",2,4);
+                    Message m = new Message("","","","",2, 4);
                     try {
                         Socket socket = new Socket("localhost",5400);
                         ObjectOutputStream op = new ObjectOutputStream(socket.getOutputStream());
@@ -123,7 +136,7 @@ public class Controller {
         }).start();
     }
     public void on_log_in(ActionEvent actionEvent)throws Exception{
-        System.out.println("LOGIN");
+        System.out.println("Going to login page");
         Parent root=null;
         Stage stage = (Stage) logb.getScene().getWindow();
         try{

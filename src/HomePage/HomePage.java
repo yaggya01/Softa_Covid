@@ -68,9 +68,6 @@ public class HomePage {
     public void chooseIdProofButtonAction(ActionEvent event) {
         FileChooser fc = new FileChooser();
         fc.setInitialDirectory(new File("F:\\projects"));
-//        fc.getExtensionFilters().addAll(
-//                new FileChooser.ExtensionFilter("PDF Files", "*.pdf")
-//        );
         selectedIdProof = fc.showOpenDialog(null);
 
         if(selectedIdProof != null) {
@@ -167,10 +164,17 @@ public class HomePage {
 
     public void initHomePageData(User u) throws IOException {
         user = u;
-        System.out.println("initHomePageData VACSTATUS : " + user.getVaccinationStatus());
         nameLabel.setText(user.getName());
         emailLabel.setText(user.getEmail());
         numberLabel.setText(user.getNumber());
+
+        System.out.println("In HomePage and displaying value of user"  + user);
+//        if(user != null){
+            nameLabel.setText(user.getName());
+            emailLabel.setText(user.getEmail());
+            numberLabel.setText(user.getNumber());
+//        }
+
         if(user.getPhoto() != null) {
 //            Image img = new Image(new ByteArrayInputStream(user.getPhoto()));
 //            BufferedImage bg = ImageIO.read((ImageInputStream) img);
@@ -183,7 +187,8 @@ public class HomePage {
             Image image = SwingFXUtils.toFXImage(img, null);
             photoImageView.setImage(image);
         } else {
-            Image image = new Image("man.png");
+//            Image image = new Image("man.png");
+            Image image  = new Image(getClass().getResourceAsStream("man.png "));
             System.out.println("image : " + image);
             photoImageView.setImage(image);
         }

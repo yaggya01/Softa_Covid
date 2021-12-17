@@ -22,7 +22,6 @@ public class GenerateCertificate
             document.add(new Paragraph("Name : " + user.getName()));
             document.add(new Paragraph("Number : " + user.getNumber()));
             document.add(new Paragraph("Email : " + user.getEmail()));
-            document.add(new Paragraph("Vaccination Status : " + user.getVaccinationStatus()));
             document.close();
             writer.close();
         } catch (DocumentException | FileNotFoundException e)

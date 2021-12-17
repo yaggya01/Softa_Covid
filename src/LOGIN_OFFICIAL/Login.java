@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,27 +18,29 @@ import javafx.stage.Stage;
 
 public class Login{
     public Button lbt;
-    public TextField UTfield;
-    public TextField ETfield;
-    public TextField OTfield;
+    public TextField UTF;
+    public TextField PASSTF;
+    public TextField ETF;
     public Socket socket;
+//    public Label lb;
     Message_otp m;
     ObjectInputStream oi=null;
 
     public void lb(javafx.event.ActionEvent actionEvent)throws Exception {
-        System.out.println("hello");
+        System.out.println("official is trying to log in");
         socket = new Socket("localhost",5400);
         ObjectOutputStream op = new ObjectOutputStream(socket.getOutputStream());
-        String name=UTfield.getText();
-        String password = ETfield.getText();
-        String email = OTfield.getText();
-        op.writeObject(new Message(name,password,email,0,2));
+        String username=UTF.getText();
+        String password = PASSTF.getText();
+        String email = ETF.getText();
+        op.writeObject(new Message(username,"Name",email,password,0,2));
+        System.out.println("official is trying to log in next");
         op.flush();
         try{
             oi = new ObjectInputStream(socket.getInputStream());
             m= (Message_otp) oi.readObject();
             System.out.println("OTP: " + m.otp);
-            if(m.otp==0){
+            if(m.otp>2){
                 Parent root=null;
                 Stage stage = (Stage) lbt.getScene().getWindow();
                 try{
@@ -47,6 +50,10 @@ public class Login{
                     e.printStackTrace();
                 }
                 stage.setScene(new Scene(root,600, 400));
+            }else if(m.otp == 2){
+//                lable.setText("Password is not correct");
+            }else{
+//                lable.setText("username not found");
             }
         }
         catch(IOException e) {

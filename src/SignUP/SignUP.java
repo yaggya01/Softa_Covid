@@ -21,19 +21,20 @@ import static java.lang.Thread.sleep;
 public class SignUP{
     public Button Sbutton;
     public TextField UTF;
+    public TextField NTF;
     public TextField ETF;
-    public TextField PTF;
+    public TextField PhTF;
     public TextField PASSTF;
     public Label lable;
     public void sAction(ActionEvent actionEvent)throws Exception {
-        System.out.println("Hello");
+        System.out.println("in sign up");
         try {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        Message m = new Message(UTF.getText(),PASSTF.getText(),ETF.getText(),0,1);
-                        m.num=Long.parseLong(PTF.getText());
+                        Message m = new Message(UTF.getText(),NTF.getText(), ETF.getText(), PASSTF.getText(),0,1);
+                        m.num=Long.parseLong(PhTF.getText());
                         Socket socket = new Socket("localhost",5400);
                         ObjectOutputStream op = new ObjectOutputStream(socket.getOutputStream());
                         ObjectInputStream oi = new ObjectInputStream(socket.getInputStream());
@@ -42,11 +43,11 @@ public class SignUP{
                         Message_otp mo=(Message_otp) oi.readObject();
                         System.out.println(mo);
                         if(mo.otp==1){
-                            System.out.println("YAAAG");
-                            lable.setText("Already Taken");
+                            System.out.println("in sign up and this username is already taken");
+                            lable.setText("Already Taken So try other username");
                         }
                         else{
-                            lable.setText("Signed In");
+                            lable.setText("Successfully account created");
                             Parent root=null;
                             Stage stage = (Stage) Sbutton.getScene().getWindow();
                             try{
