@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.dashBoard_official">
+   <children>
+      <Button fx:id="user" layoutX="216.0" layoutY="37.0" mnemonicParsing="false" onAction="#lbUser" prefHeight="94.0" prefWidth="168.0" text="User Vacination Status" />
+   </children>
+</AnchorPane>

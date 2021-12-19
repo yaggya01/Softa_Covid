@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SearchByUser.SearchByUser">
+    <children>
+        <Label fx:id="StateLabel" layoutX="43.0" layoutY="76.0" prefHeight="17.0" prefWidth="45.0" text="State" />
+        <Label fx:id="CityLabel" layoutX="283.0" layoutY="76.0" text="City" />
+        <TextField fx:id="city_name" layoutX="336.0" layoutY="72.0" />
+        <TextField fx:id="state_name" layoutX="97.0" layoutY="72.0" />
+        <Button fx:id="searchbtn" layoutX="433.0" layoutY="105.0" mnemonicParsing="false" onAction="#Searching" text="Search" />
+        <Label fx:id="NotFoundLabel" layoutX="33.0" layoutY="118.0" prefHeight="17.0" prefWidth="127.0" />
+      <Button fx:id="backbtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Back" />
+      <TextArea fx:id="txtarea" layoutX="7.0" layoutY="142.0" prefHeight="84.0" prefWidth="517.0" />
+      <TextField fx:id="HIDTF" layoutX="66.0" layoutY="247.0" />
+      <TextField fx:id="VacTF" layoutX="310.0" layoutY="247.0" />
+      <Button fx:id="bookbtn" layoutX="222.0" layoutY="286.0" mnemonicParsing="false" onAction="#Booking" text="BOOK" />
+      <Label layoutX="29.0" layoutY="251.0" text="HID" />
+      <Label layoutX="263.0" layoutY="251.0" text="Vaccine" />
+      <Label fx:id="status_label" layoutX="232.0" layoutY="18.0" prefHeight="17.0" prefWidth="250.0" />
+      <Label fx:id="book_label" layoutX="396.0" layoutY="278.0" prefHeight="17.0" prefWidth="113.0" />
+    </children>
+</AnchorPane>
