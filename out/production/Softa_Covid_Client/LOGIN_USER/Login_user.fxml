@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_USER.LoginUser">
+   <children>
+      <PasswordField fx:id="PASSTF" layoutX="216.0" layoutY="200.0" />
+      <TextField fx:id="UTF" layoutX="216.0" layoutY="118.0" />
+      <Label layoutX="215.0" layoutY="86.0" prefHeight="18.0" prefWidth="90.0" text="Username" />
+      <Label layoutX="216.0" layoutY="168.0" text="PASSWORD" />
+      <TextField fx:id="OTF" layoutX="215.0" layoutY="276.0" />
+      <Label layoutX="216.0" layoutY="243.0" prefHeight="18.0" prefWidth="78.0" text="Enter OTP" />
+      <Button fx:id="btotp" layoutX="395.0" layoutY="164.0" mnemonicParsing="false" onAction="#lb" text="Generate OTP" />
+      <Button fx:id="lgbt" layoutX="264.0" layoutY="319.0" mnemonicParsing="false" onAction="#lbt" text="Login" />
+      <Label fx:id="lb_verified" layoutX="224.0" layoutY="345.0" prefHeight="36.0" prefWidth="129.0" />
+   </children>
+</AnchorPane>

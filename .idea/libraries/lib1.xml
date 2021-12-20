@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Softa_Covid_Server/lib/javax.mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Softa_Covid_Server/lib/itextpdf-5.5.13.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Softa_Covid_Server/lib/mysql-connector-java-5.1.48.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Softa_Covid_Server/lib/mysql-connector-java-5.1.48-bin.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
