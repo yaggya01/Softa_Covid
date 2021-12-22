@@ -210,7 +210,7 @@ public class HandleClient_Username implements Runnable {
                     PreparedStatement preSat;
                     preSat = connection.prepareStatement(q);
                     preSat.executeUpdate();
-
+                    //JavaMailUtil.sendMail(result.getString("Email"),10000);
                 }
                 else if(m.t==Message.job.Time){
                     String url = "jdbc:mysql://localhost:3306/Covid";
