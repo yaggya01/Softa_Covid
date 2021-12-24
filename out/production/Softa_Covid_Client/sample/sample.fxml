@@ -30,6 +30,7 @@
                 <Label layoutX="67.0" layoutY="287.0" prefHeight="17.0" prefWidth="48.0" text="Time" />
                 <Button fx:id="initBT" layoutX="6.0" layoutY="87.0" mnemonicParsing="false" onAction="#Linit" prefHeight="33.0" prefWidth="121.0" text="Initialize" />
                 <Button fx:id="getBT" layoutX="304.0" layoutY="284.0" mnemonicParsing="false" onAction="#BTget" text="GET" />
+                <Button fx:id="signup_official_button" layoutX="290.0" layoutY="91.0" mnemonicParsing="false" onAction="#signup_official" text="SIGNUP_OFFICIAL" />
                 <Label layoutX="155.0" layoutY="325.0" prefHeight="33.0" prefWidth="185.0" text="Cases Per Province" textAlignment="CENTER">
                     <font>
                         <Font name="Arial" size="17.0" />

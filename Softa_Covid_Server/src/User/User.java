@@ -1,11 +1,10 @@
 package User;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 public class User implements Serializable {
 
-    private String username, name, number, email;
+    private String username, name, number, email, vaccine_status, booking_status;
     private byte[] idProof,photo;
 
     public User() {
@@ -13,6 +12,8 @@ public class User implements Serializable {
         name="";
         number="";
         email="";
+        vaccine_status = "none";
+        booking_status = "none";
         idProof = null;
         photo = null;
     }
@@ -23,6 +24,8 @@ public class User implements Serializable {
         this.name = name;
         this.number = number;
         this.email = email;
+        this.vaccine_status = "none";
+        this.booking_status = "none";
         idProof = uIdProof;
         photo = uPhoto;
     }
@@ -33,6 +36,8 @@ public class User implements Serializable {
         name = u.name;
         number = u.number;
         email = u.email;
+        vaccine_status = u.vaccine_status;
+        booking_status = u.booking_status;
         idProof = u.idProof;
         photo = u.photo;
     }
@@ -52,6 +57,12 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public void setVaccine_status(String vaccine_status) {
+        this.vaccine_status = vaccine_status;
+    }
+    public void setBooking_status(String booking_status) {
+        this.booking_status = booking_status;
+    }
     public void setIdProof(byte[] idProof) {
         this.idProof = idProof;
     }
@@ -72,7 +83,12 @@ public class User implements Serializable {
     public String getEmail() {
         return email;
     }
-
+    public String getVaccine_status() {
+        return vaccine_status;
+    }
+    public String getBooking_status() {
+        return booking_status;
+    }
     public byte[] getIdProof() {
         return idProof;
     }

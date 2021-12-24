@@ -55,8 +55,22 @@ public class HandleClient_Username implements Runnable {
                                 int otp= rand.nextInt(9999);
                                 JavaMailUtil.sendMail(result.getString("Email"),otp);
                                 User user = getUser(result);
-
+                                String q2 = "Select * from doses where username=";
+                                q2 = q2 + '"';
+                                q2 = q2 + m.username;
+                                q2 = q2 + '"';
+                                q2 = q2 + " and done = 2";
+                                q2 = q2 + ';';
+                                PreparedStatement preSat2;
+                                preSat2 = connection.prepareStatement(q2);
+                                ResultSet result2 = preSat2.executeQuery();
+                                if(result2.next()){
+                                    String temp = "1 booking of " + result2.getString("vaccine_name") + " on " + result2.getDate("date");
+                                    user.setBooking_status(temp);
+                                }
                                 k = new Message_otp(otp, user);
+                                int cnt=0;
+
                                 System.out.println("HandleClient_Username -> " + k);
                             } else {
                                 k = new Message_otp(2);
@@ -113,7 +127,7 @@ public class HandleClient_Username implements Runnable {
                         preSat = connection.prepareStatement(q);
                         ResultSet result = preSat.executeQuery();
                         if (result.next()) {
-                            System.out.println("User Name: " + result.getString("Name") + " Password: " + result.getString("Password") + " Email: " + result.getString("Email"));
+                            System.out.println("User Name: " + result.getString("uername") + " Password: " + result.getString("Password") + " Email: " + result.getString("Email"));
                             op.writeObject(new Message_otp(1));
                             return;
                         }

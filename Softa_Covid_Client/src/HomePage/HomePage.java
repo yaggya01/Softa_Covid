@@ -1,7 +1,9 @@
 package HomePage;
 
+import Message.SearchMessage;
 import SearchByUser.SearchByUser;
 import User.User;
+import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,6 +33,9 @@ public class HomePage {
     private Button uploadPhotoButton;
 
     @FXML
+    private Button cancel_button;
+
+    @FXML
     private Button chooseIdProofButton;
 
     @FXML
@@ -44,6 +49,9 @@ public class HomePage {
 
     @FXML
     private Label numberLabel;
+
+    @FXML
+    private Label booking_status_label;
 
     @FXML
     private Label firstDoseStatusLabel;
@@ -75,6 +83,32 @@ public class HomePage {
         } else {
             System.out.println("File is not valid");
         }
+    }
+    public void cancel_booking(ActionEvent actionEvent) throws Exception {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    System.out.println("in HomePage->cancel booking thread");
+                    Socket socket2 = new Socket("localhost",5402);
+                    ObjectOutputStream op = new ObjectOutputStream(socket2.getOutputStream());
+                    op.writeObject(new SearchMessage("", "", -1, "", user,3));
+                    op.flush();
+                    try{
+                        ObjectInputStream oi = new ObjectInputStream(socket2.getInputStream());
+                        user = (User) oi.readObject();
+                        initHomePageData(user);
+                    }
+                    catch(Exception e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }).start();
     }
 
     public void uploadIdProofButtonAction(ActionEvent event) throws IOException {
@@ -168,6 +202,24 @@ public class HomePage {
         emailLabel.setText(user.getEmail());
         numberLabel.setText(user.getNumber());
 
+        if(user.getBooking_status() == "none"){
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    booking_status_label.setText(user.getBooking_status());
+                    cancel_button.setVisible(false);
+                }
+            });
+
+        }else{
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    booking_status_label.setText(user.getBooking_status());
+                    cancel_button.setVisible(true);
+                }
+            });
+        }
         System.out.println("In HomePage and displaying value of user"  + user);
 //        if(user != null){
             nameLabel.setText(user.getName());
@@ -262,5 +314,6 @@ public class HomePage {
             e.printStackTrace();
         }
     }
+
 
 }
