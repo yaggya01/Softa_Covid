@@ -252,7 +252,7 @@ public class Controller {
         catch (IOException e){
             e.printStackTrace();
         }
-        stage.setScene(new Scene(root,600, 400));
+        stage.setScene(new Scene(root,950, 740));
     }
     public void on_log_of(ActionEvent actionEvent)throws Exception{
         System.out.println("LOGIN Official");
@@ -264,7 +264,7 @@ public class Controller {
         catch (IOException e){
             e.printStackTrace();
         }
-        stage.setScene(new Scene(root,600, 400));
+        stage.setScene(new Scene(root,950, 740));
     }
     public void on_sign_in(ActionEvent actionEvent)throws Exception{
         System.out.println("SignIN");
@@ -276,6 +276,6 @@ public class Controller {
         catch (IOException e){
             e.printStackTrace();
         }
-        stage.setScene(new Scene(root,600, 400));
+        stage.setScene(new Scene(root,950, 740));
     }
 }

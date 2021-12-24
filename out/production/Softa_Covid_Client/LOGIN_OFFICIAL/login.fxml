@@ -2,15 +2,30 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.Login">
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_USER.LoginUser">
     <children>
-        <PasswordField fx:id="PASSTF" layoutX="216.0" layoutY="200.0" />
-        <TextField fx:id="UTF" layoutX="216.0" layoutY="118.0" />
-        <Label layoutX="216.0" layoutY="86.0" text="USER NAME" />
-        <Label layoutX="216.0" layoutY="168.0" text="PASSWORD" />
-        <TextField fx:id="ETF" layoutX="215.0" layoutY="276.0" />
-        <Label layoutX="216.0" layoutY="243.0" text="EMAIL" />
-        <Button fx:id="lbt" layoutX="264.0" layoutY="330.0" mnemonicParsing="false" onAction="#lb" text="LOGIN" />
+      <Pane layoutX="278.0" layoutY="98.0" opacity="0.3" prefHeight="561.0" prefWidth="364.0" style="-fx-background-color: #CEE8C2; -fx-background-radius: 10px;" />
+        <PasswordField fx:id="ETF" layoutX="314.0" layoutY="512.0" prefHeight="46.0" prefWidth="271.0" />
+        <TextField fx:id="UTF" layoutX="314.0" layoutY="220.0" prefHeight="46.0" prefWidth="271.0" />
+        <Label layoutX="314.0" layoutY="121.0" prefHeight="77.0" prefWidth="195.0" text="USERNAME">
+            <font>
+                <Font name="Cambria Bold" size="37.0" />
+            </font></Label>
+        <Label layoutX="314.0" layoutY="280.0" prefHeight="78.0" prefWidth="244.0" text="PASSWORD">
+            <font>
+                <Font name="System Bold" size="37.0" />
+            </font></Label>
+        <TextField fx:id="PASSTF" layoutX="314.0" layoutY="350.0" prefHeight="46.0" prefWidth="271.0" />
+        <Label layoutX="314.0" layoutY="434.0" prefHeight="78.0" prefWidth="204.0" text="EMAIL">
+            <font>
+                <Font name="Cambria Bold" size="36.0" />
+            </font></Label>
+        <Button fx:id="lbt" layoutX="389.0" layoutY="572.0" mnemonicParsing="false" onAction="#lbt" prefHeight="57.0" prefWidth="139.0" style="-fx-background-radius: 50px;" text="Login">
+            <font>
+                <Font size="24.0" />
+            </font></Button>
+        <Label fx:id="lb_verified" layoutX="224.0" layoutY="345.0" prefHeight="36.0" prefWidth="129.0" />
     </children>
 </AnchorPane>

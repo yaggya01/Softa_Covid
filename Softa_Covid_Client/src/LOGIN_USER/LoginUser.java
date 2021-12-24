@@ -69,7 +69,7 @@ public class LoginUser{
             Stage stage = (Stage) lb_verified.getScene().getWindow();
 //            stage.hide();
             stage.setScene(
-                    new Scene(loader.load(), 800, 500)
+                    new Scene(loader.load(),950, 740)
             );
 
             HomePage controller = loader.getController();
