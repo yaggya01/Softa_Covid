@@ -9,7 +9,7 @@ public class SearchMessage implements Serializable{
      *
      */
     public enum job{
-        initialize, search_slots, book_slots
+        initialize, search_slots, book_slots,cancel_booking
     }
     public String city;
     public String state;
@@ -22,7 +22,8 @@ public class SearchMessage implements Serializable{
         hid=h; vaccine_name=v; user=u;
         if(b == 0) which_operation = job.initialize;
         else if(b==1) which_operation=job.search_slots;
-        else which_operation = job.book_slots;
+        else if(b==2) which_operation = job.book_slots;
+        else which_operation = job.cancel_booking;
     }
     public String toString(){
         return String.format("State: %s  City: %s  ",state,city);

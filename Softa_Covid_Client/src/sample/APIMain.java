@@ -1,10 +1,10 @@
 package sample;
-import com.google.gson.Gson;
-import netscape.javascript.JSObject;
 
-import java.io.*;
-import java.util.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class APIMain {
     static class cases{

@@ -3,6 +3,7 @@ package Server;
 import Message.Returned_SearchMessage;
 import Message.SearchMessage;
 import Message.Hosp_info;
+import User.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -55,7 +56,7 @@ public class HandleClient_SearchByUser implements Runnable {
                     PreparedStatement preSat;
                     preSat = connection.prepareStatement(q);
                     ResultSet rs = preSat.executeQuery();
-                    Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.search_slots, "", "");
+                    Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.search_slots, "", "", m.user);
                     while(rs.next()){
                         Hosp_info tmp_obj = new Hosp_info();
                         tmp_obj.HID = rs.getInt("HID");
@@ -71,7 +72,27 @@ public class HandleClient_SearchByUser implements Runnable {
                         while(rs2.next()){
                             String vaccine_name = rs2.getString("vaccine_name");
                             int cnt = rs2.getInt("remaining");
-                            tmp_obj.vac.add(vaccine_name + ": " + cnt);
+                            tmp_obj.vac.add(vaccine_name + " : ");
+                            if(cnt == 0){
+                                String q3 = "Select count(*) from doses where HID=";
+                                q3 = q3 + hid;
+                                q3 = q3 + " and vaccine_name = ";
+                                q3 = q3 + '"';
+                                q3 = q3 + vaccine_name;
+                                q3 = q3 + '"';
+                                q3 = q3 + " and done = 2";
+                                q3 = q3 + ';';
+                                PreparedStatement preSat3;
+                                preSat3 = connection.prepareStatement(q3);
+                                ResultSet rs3 = preSat3.executeQuery();
+                                int count_of_waitlist=0;
+                                if(rs3.next()){
+                                    count_of_waitlist = rs3.getInt("count(*)");  // count of waitlist
+                                }
+                                tmp_obj.vac.add(count_of_waitlist + " in waitlist ");
+                            }else{
+                                tmp_obj.vac.add(cnt + " remaining ");
+                            }
                         }
                         obj.ans.add(tmp_obj);
                     }
@@ -101,7 +122,7 @@ public class HandleClient_SearchByUser implements Runnable {
                         q = q + '"';
                         q = q + m.user.getUsername();
                         q = q + '"';
-                        q = q + " and done=0";
+                        q = q + " and done IN (0,2)";  // to get bboked or waitlist doses
                         q = q + ';';
                         preSat = connection.prepareStatement(q);
                         rs = preSat.executeQuery();
@@ -137,7 +158,7 @@ public class HandleClient_SearchByUser implements Runnable {
                             needed = rs2.getInt("doses_needed");
                             days_diff = rs2.getInt("days_diff");
                         }
-                        String q3 = "Select * from vaccine_cnt where hid = ";
+                        String q3 = "Select * from vaccine_cnt where hid = "; // to find remaining vaccines
                         q3 += m.hid;
                         q3 += " and vaccine_name = ";
                         q3 += '"';
@@ -153,11 +174,55 @@ public class HandleClient_SearchByUser implements Runnable {
                         Date date=java.util.Calendar.getInstance().getTime();
                         int diffInDays = (int) ((date.getTime() - last_date.getTime()) / (1000 * 60 * 60 * 24));
 
-//                        System.out.println("sdkj" + count_done + " " + needed + " " + count_notdone + "needed"+ days_diff + " " +  remaining + " ");
-//                        System.out.println(last_vaccine + " " + m.vaccine_name);
+                        System.out.println("countdone= " + count_done + "needed =" + needed + " not done =" + count_notdone + "days diffneeded"+ days_diff + "remaining " +  remaining + " ");
+                        System.out.println(last_vaccine + " " + m.vaccine_name);
 
-                        if(count_done >= needed || (count_done>0 && days_diff<(diffInDays)) || count_notdone>0 || remaining == 0 || (count_done>0 && last_vaccine != m.vaccine_name)){
-                            Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.book_slots, "Not Done", "");
+
+                        if(count_done >= needed){
+                            Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.book_slots, "You are already vaccinated", "", m.user);
+                            System.out.println(obj.StatusOfBookingOperation);
+                            op.writeObject(obj);
+                            op.flush();
+                        }else if(count_done>0 && days_diff<(diffInDays)){
+                            Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.book_slots, "wait MORE", "",m.user);
+                            System.out.println(obj.StatusOfBookingOperation);
+                            op.writeObject(obj);
+                            op.flush();
+                        }
+                        else if(count_notdone > 0){
+                            Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.book_slots, "You already have a booking", "",m.user);
+                            System.out.println(obj.StatusOfBookingOperation);
+                            op.writeObject(obj);
+                            op.flush();
+                        }
+                        else if((count_done>0 && last_vaccine != m.vaccine_name)){
+                            Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.book_slots, "dont take multiple vaccines", "",m.user);
+                            System.out.println(obj.StatusOfBookingOperation);
+                            op.writeObject(obj);
+                            op.flush();
+                        }
+                        else if(remaining == 0){  // to put in waitlist
+                            int count_of_doses=0;
+                            String q4 = "Select count(*) from vaccine;"; // to get DID = no. of doses already present + 1
+                            PreparedStatement preSat4 = connection.prepareStatement(q4);
+                            ResultSet rs4 = preSat4.executeQuery();
+                            if(rs4.next()){
+                                count_of_doses = rs4.getInt("count(*)");
+                            }
+                            q4 = "Insert into doses values (?,?,?,?,?,?,?)";
+                            preSat4 = connection.prepareStatement(q4);
+                            preSat4.setString(1, m.user.getUsername());
+                            preSat4.setLong(2, count_of_doses+1);
+                            preSat4.setString(3, m.vaccine_name);
+                            preSat4.setInt(4, count_done+1);
+                            preSat4.setInt(5, m.hid);
+                            preSat4.setInt(6, 2);
+                            java.sql.Timestamp date2 = new java.sql.Timestamp(new java.util.Date().getTime());
+                            preSat4.setTimestamp(7, date2);
+                            preSat4.execute();
+                            Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.book_slots, "waitlisted" ,"",m.user);
+                            String booking_status = "1 waitlist for" + m.vaccine_name + " on " + date;
+                            obj.user.setBooking_status(booking_status);
                             System.out.println(obj.StatusOfBookingOperation);
                             op.writeObject(obj);
                             op.flush();
@@ -187,11 +252,13 @@ public class HandleClient_SearchByUser implements Runnable {
                             preSat4.setString(3, m.vaccine_name);
                             preSat4.setInt(4, count_done+1);
                             preSat4.setInt(5, m.hid);
-                            preSat4.setBoolean(6, false);
+                            preSat4.setInt(6, 1);
                             java.sql.Timestamp date2 = new java.sql.Timestamp(new java.util.Date().getTime());
                             preSat4.setTimestamp(7, date2);
                             preSat4.execute();
-                            Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.book_slots, "DONE" ,"");
+                            Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.book_slots, "done" ,"", m.user);
+                            String booking_status = "1 booking for" + m.vaccine_name + " on " + date;
+                            obj.user.setBooking_status(booking_status);
                             System.out.println(obj.StatusOfBookingOperation);
                             op.writeObject(obj);
                             op.flush();
@@ -200,7 +267,25 @@ public class HandleClient_SearchByUser implements Runnable {
                         lock.unlock();
                     }
 
-                }else{
+                }else if(m.which_operation == SearchMessage.job.cancel_booking){
+                    String url = "jdbc:mysql://localhost:3306/Covid";
+                    Connection connection = DriverManager.getConnection(url, "root", "");
+                    String q4 = "delete from doses where username = ";
+                    q4 += '"';
+                    q4 += m.user.getUsername();
+                    q4 += '"';
+                    q4 += " and done = 2";
+                    q4 += ';';
+                    System.out.println(q4);
+                    PreparedStatement preSat4;
+                    preSat4 = connection.prepareStatement(q4);
+                    preSat4.executeUpdate();
+                    User obj = new User(m.user);
+                    obj.setBooking_status("none");
+                    op.writeObject(obj);
+                    op.flush();
+                }
+                else{
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     String q = "Select count(*) from doses where username=";
@@ -229,7 +314,7 @@ public class HandleClient_SearchByUser implements Runnable {
                     if(rs.next()){
                         last_vaccine = rs.getString("vaccine_name");
                     }
-                    Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.initialize, "", "");
+                    Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.initialize, "", "", m.user);
                     if(count_done==0){
                         obj.vaccineStatusOfUser = "No vaccines taken by you";
 

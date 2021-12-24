@@ -1,6 +1,7 @@
 package sample;
 
-import Message.*;
+import Message.Message;
+import Message.Message_Time_Graph;
 import com.google.gson.Gson;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -10,15 +11,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 
@@ -29,6 +31,7 @@ public class Controller {
     public Button getBT;
     public ChoiceBox TimeBox;
     public Button initBT;
+    public Button signup_official_button;
     public LineChart Vaccine_chart;
     public PieChart txtbox;
     public TextArea stateTA;
@@ -61,6 +64,19 @@ public class Controller {
                 }
             }
         }).start();
+    }
+
+    public void signup_official(ActionEvent actionEvent) {
+        System.out.println("SignUP_official");
+        Parent root=null;
+        Stage stage = (Stage) logb.getScene().getWindow();
+        try{
+            root = FXMLLoader.load(getClass().getResource("../signup_official/SignUP.fxml"));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        stage.setScene(new Scene(root,600, 400));
     }
 
     static class cases{

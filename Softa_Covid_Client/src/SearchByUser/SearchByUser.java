@@ -101,7 +101,8 @@ public class SearchByUser {
                     try{
                         oi = new ObjectInputStream(socket.getInputStream());
                         m= (Returned_SearchMessage) oi.readObject();
-                        System.out.println("in search by user " + m.StatusOfBookingOperation);
+//                        System.out.println("in search by user " + m.StatusOfBookingOperation);
+                        user = m.user;
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
@@ -134,6 +135,7 @@ public class SearchByUser {
                     try{
                         oi = new ObjectInputStream(socket.getInputStream());
                         m= (Returned_SearchMessage) oi.readObject();
+                        user = m.user;
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
