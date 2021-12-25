@@ -34,5 +34,10 @@
          <font>
             <Font name="Cambria Bold" size="33.0" />
          </font></Label>
+      <Button fx:id="backBt" layoutX="36.0" layoutY="31.0" mnemonicParsing="false" onAction="#backAction" prefHeight="77.0" prefWidth="90.0" style="-fx-background-radius: 40px;" text="🔙" textAlignment="CENTER">
+         <font>
+            <Font name="Cambria Bold" size="35.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

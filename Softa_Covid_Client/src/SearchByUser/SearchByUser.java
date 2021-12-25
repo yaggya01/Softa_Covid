@@ -1,15 +1,20 @@
 package SearchByUser;
 
+import HomePage.HomePage;
 import Message.Returned_SearchMessage;
 import Message.SearchMessage;
 import Message.Hosp_info;
 import User.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -29,8 +34,7 @@ public class SearchByUser {
     public Button backbtn;
     public TextArea txtarea;
     public Socket socket;
-    public Label status_label;
-    public Label book_label;
+    public Label label;
     ObjectInputStream oi = null;
     Returned_SearchMessage m;
 
@@ -58,7 +62,7 @@ public class SearchByUser {
                             Platform.runLater(new Runnable() {
                                 @Override
                                 public void run() {
-                                    NotFoundLabel.setText("Not Found Anything");
+                                    label.setText("Not Found Anything");
                                 }
                             });
                         }else{
@@ -106,7 +110,7 @@ public class SearchByUser {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                                book_label.setText(m.StatusOfBookingOperation);
+                                label.setText(m.StatusOfBookingOperation);
                             }
                         });
                     }
@@ -139,9 +143,10 @@ public class SearchByUser {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                                status_label.setText(m.vaccineStatusOfUser);
+                                label.setText(m.vaccineStatusOfUser);
                             }
                         });
+
 
                     }
                     catch(Exception e) {
@@ -155,23 +160,22 @@ public class SearchByUser {
 
         }).start();
     }
-//    public void go_back(ActionEvent actionEvent) {
-//        Parent root=null;
-//        Stage stage = (Stage) nameLabel.getScene().getWindow();
-//        try{
-//            FXMLLoader loader = new FXMLLoader(
-//                    getClass().getResource(
-//                            "../HomePage/HomePage.fxml"
-//                    )
-//            );
-//            stage.setScene(new Scene(loader.load(),600, 400));
-//            SearchByUser controller = loader.getController();
-//            controller.initSearchByUserData(user);
-//        }
-//        catch (IOException e){
-//            e.printStackTrace();
-//        }
-//    }
+    public void go_back(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        "../HomePage/HomePage.fxml"
+                )
+        );
+
+        Stage stage = (Stage) backbtn.getScene().getWindow();
+//            stage.hide();
+        stage.setScene(
+                new Scene(loader.load(),950, 740)
+        );
+        HomePage controller = loader.getController();
+        System.out.println("In LoginUser and displaying value of m.user:\n"  + m.user);
+        controller.initHomePageData(m.user);
+    }
 
 
 }

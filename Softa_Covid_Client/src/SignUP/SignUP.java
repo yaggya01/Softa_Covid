@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.Controller;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,6 +21,7 @@ import static java.lang.Thread.sleep;
 
 public class SignUP{
     public Button Sbutton;
+    public Button backBt;
     public TextField UTF;
     public TextField NTF;
     public TextField ETF;
@@ -70,5 +72,21 @@ public class SignUP{
             e.printStackTrace();
         }
 
+    }
+
+    public void backAction(ActionEvent actionEvent) throws Exception {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        "../sample/sample.fxml"
+                )
+        );
+
+        Stage stage = (Stage) backBt.getScene().getWindow();
+//            stage.hide();
+        stage.setScene(
+                new Scene(loader.load(),950, 740)
+        );
+        Controller controller = loader.getController();
+        controller.initSample();
     }
 }

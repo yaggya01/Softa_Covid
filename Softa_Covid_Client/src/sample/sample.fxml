@@ -15,7 +15,7 @@
     <children>
         <Pane prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);">
             <children>
-            <Pane layoutX="20.0" layoutY="14.0" opacity="0.46" prefHeight="715.0" prefWidth="915.0" style="-fx-background-color: #CEE8C2; -fx-background-radius: 20px;" />
+            <Pane layoutX="18.0" layoutY="13.0" opacity="0.46" prefHeight="715.0" prefWidth="915.0" style="-fx-background-color: #CEE8C2; -fx-background-radius: 20px;" />
             <PieChart fx:id="txtbox" layoutX="-257.0" layoutY="347.0" prefHeight="405.0" prefWidth="1084.0" />
                 <Button fx:id="logb" layoutX="220.0" layoutY="30.0" mnemonicParsing="false" onAction="#on_log_in" prefHeight="104.0" prefWidth="129.0" text="LOGIN USER" textAlignment="CENTER" wrapText="true">
                <font>
@@ -42,7 +42,7 @@
                <font>
                   <Font name="Cambria Bold" size="24.0" />
                </font></Label>
-                <Button fx:id="initBT" layoutX="68.0" layoutY="152.0" mnemonicParsing="false" onAction="#Linit" prefHeight="104.0" prefWidth="129.0" text="Initialize">
+                <Button fx:id="initBT" layoutX="68.0" layoutY="152.0" mnemonicParsing="false" onAction="#Linit" prefHeight="104.0" prefWidth="129.0" text="OFFICIAL SIGNUP" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Cambria Bold" size="21.0" />
                </font></Button>
@@ -50,12 +50,6 @@
                <font>
                   <Font name="Cambria Bold" size="14.0" />
                </font></Button>
-                <Label alignment="CENTER" layoutX="66.0" layoutY="272.0" prefHeight="73.0" prefWidth="282.0" text="Cases Per Province" textAlignment="CENTER">
-
-                    <font>
-                        <Font name="Cambria Bold" size="26.0" />
-                    </font>
-                </Label>
             <TextArea fx:id="stateTA" layoutX="622.0" layoutY="420.0" prefHeight="258.0" prefWidth="282.0" />
             <Button fx:id="stateBT" layoutX="838.0" layoutY="358.0" mnemonicParsing="false" onAction="#stateOnClick" prefHeight="44.0" prefWidth="70.0" text="Filter" textAlignment="CENTER">
                <font>
@@ -66,6 +60,18 @@
                   <Font name="Cambria Bold" size="26.0" />
                </font></Label>
             <TextField fx:id="stateTF" layoutX="622.0" layoutY="358.0" prefHeight="44.0" prefWidth="206.0" />
+                <Label alignment="CENTER" layoutX="68.0" layoutY="255.0" prefHeight="73.0" prefWidth="282.0" text="Cases Per Province" textAlignment="CENTER">
+
+                          <font>
+                        <Font name="Cambria Bold" size="26.0" />
+                    </font>
+                </Label>
+            <ChoiceBox fx:id="cases_filter" layoutX="68.0" layoutY="304.0" prefHeight="54.0" prefWidth="282.0" />
+            <Button fx:id="filterBT" layoutX="355.0" layoutY="304.0" mnemonicParsing="false" onAction="#filter_change" prefHeight="54.0" prefWidth="86.0" text="Filter">
+               <font>
+                  <Font name="Cambria Bold" size="18.0" />
+               </font>
+            </Button>
             </children>
         </Pane>
     </children>

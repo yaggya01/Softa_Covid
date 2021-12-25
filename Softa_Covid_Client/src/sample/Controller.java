@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -30,8 +31,10 @@ public class Controller {
     public Button signb;
     public Button getBT;
     public ChoiceBox TimeBox;
+    public ChoiceBox cases_filter;
     public Button initBT;
     public Button signup_official_button;
+    public Button filterBT;
     public LineChart Vaccine_chart;
     public PieChart txtbox;
     public TextArea stateTA;
@@ -76,7 +79,34 @@ public class Controller {
         catch (IOException e){
             e.printStackTrace();
         }
-        stage.setScene(new Scene(root,600, 400));
+        stage.setScene(new Scene(root,950, 740));
+    }
+
+    public void filter_change(ActionEvent actionEvent) {
+        if(cases_filter.getValue().equals("Deaths")) {
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+            for (int i = 0; i < ar.length; i++) {
+                System.out.println("State: " + ar[i].provinceState + " Confirmed: " + ar[i].deaths);
+                pieChartData.add(new PieChart.Data(ar[i].provinceState, Integer.parseInt(ar[i].deaths)));
+            }
+            txtbox.setData(pieChartData);
+        }
+        else if(cases_filter.getValue().equals("Active")){
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+            for (int i = 0; i < ar.length; i++) {
+                System.out.println("State: " + ar[i].provinceState + " Recovered: " + ar[i].active);
+                pieChartData.add(new PieChart.Data(ar[i].provinceState, Integer.parseInt(ar[i].active)));
+            }
+            txtbox.setData(pieChartData);
+        }
+        else{
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+            for (int i = 0; i < ar.length; i++) {
+                System.out.println("State: " + ar[i].provinceState + " Confirmed: " + ar[i].confirmed);
+                pieChartData.add(new PieChart.Data(ar[i].provinceState, Integer.parseInt(ar[i].confirmed)));
+            }
+            txtbox.setData(pieChartData);
+        }
     }
 
     static class cases{
@@ -122,55 +152,16 @@ public class Controller {
         }
     }
     public void Linit(ActionEvent actionEvent)throws  Exception{
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                String g[]={"All Time","30 Days","One Week"};
-                TimeBox.setItems(FXCollections.observableArrayList(g));
-
-            }
-        });
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                URL urlForGetRequest = null;
-                try {
-                    urlForGetRequest = new URL("https://covid19.mathdro.id/api/countries/india/confirmed");
-                    String readLine = null;
-                    HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
-                    conection.setRequestMethod("GET");
-                    conection.setRequestProperty("userId", "a1bcdef"); // set userId its a sample here
-                    int responseCode = conection.getResponseCode();
-
-
-                    if (responseCode == HttpURLConnection.HTTP_OK) {
-                        BufferedReader in = new BufferedReader(
-                                new InputStreamReader(conection.getInputStream()));
-                        StringBuffer response = new StringBuffer();
-                        while ((readLine = in .readLine()) != null) {
-                            response.append(readLine);
-                        } in .close();
-                        // print result
-
-                        //System.out.println("JSON String Result " + response.toString());
-                        ar = new Gson().fromJson(response.toString(), APIMain.cases[].class);
-                        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-                        for(int i =0;i<ar.length;i++){
-                            System.out.println("State: "+ar[i].provinceState+" Confirmed: "+ar[i].confirmed);
-                            pieChartData.add(new PieChart.Data(ar[i].provinceState,Integer.parseInt(ar[i].confirmed)));
-                        }
-                        txtbox.setData(pieChartData);
-                        //GetAndPost.POSTRequest(response.toString());
-                    } else {
-                        System.out.println("GET NOT WORKED");
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }).run();
+        System.out.println("SignIN");
+        Parent root=null;
+        Stage stage = (Stage) logb.getScene().getWindow();
+        try{
+            root = FXMLLoader.load(getClass().getResource("../signup_official/SignUP.fxml"));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        stage.setScene(new Scene(root,950, 740));
     }
     public void BTget(ActionEvent actionEvent)throws Exception{
         new Thread(new Runnable() {
@@ -282,6 +273,60 @@ public class Controller {
         }
         stage.setScene(new Scene(root,950, 740));
     }
+    public void initSample()throws Exception{
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String g[]={"All Time","30 Days","One Week"};
+                TimeBox.setItems(FXCollections.observableArrayList(g));
+                String k[]={"Confirmed","Deaths","Active"};
+                cases_filter.setItems(FXCollections.observableArrayList(k));
+                cases_filter.setValue("Confirmed");
+            }
+        });
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                URL urlForGetRequest = null;
+                try {
+                    urlForGetRequest = new URL("https://covid19.mathdro.id/api/countries/india/confirmed");
+                    String readLine = null;
+                    HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
+                    conection.setRequestMethod("GET");
+                    conection.setRequestProperty("userId", "a1bcdef"); // set userId its a sample here
+                    int responseCode = conection.getResponseCode();
+
+
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        BufferedReader in = new BufferedReader(
+                                new InputStreamReader(conection.getInputStream()));
+                        StringBuffer response = new StringBuffer();
+                        while ((readLine = in .readLine()) != null) {
+                            response.append(readLine);
+                        } in .close();
+                        // print result
+
+                        System.out.println("JSON String Result " + response.toString());
+                        ar = new Gson().fromJson(response.toString(), APIMain.cases[].class);
+                        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+                        for(int i =0;i<ar.length;i++){
+                            System.out.println("State: "+ar[i].provinceState+" Confirmed: "+ar[i].confirmed);
+                            pieChartData.add(new PieChart.Data(ar[i].provinceState,Integer.parseInt(ar[i].confirmed)));
+                        }
+                        txtbox.setData(pieChartData);
+                        //GetAndPost.POSTRequest(response.toString());
+                    } else {
+                        System.out.println("GET NOT WORKED");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).run();
+    }
+
     public void on_sign_in(ActionEvent actionEvent)throws Exception{
         System.out.println("SignIN");
         Parent root=null;

@@ -2,9 +2,19 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.dashBoard_official">
+<AnchorPane prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.dashBoard_official">
    <children>
-      <Button fx:id="user" layoutX="216.0" layoutY="37.0" mnemonicParsing="false" onAction="#lbUser" prefHeight="94.0" prefWidth="168.0" text="User Vacination Status" />
+      <Pane layoutX="312.0" layoutY="85.0" opacity="0.56" prefHeight="425.0" prefWidth="327.0" style="-fx-background-color: #AAF687; -fx-background-radius: 10px;" />
+      <Button fx:id="user" layoutX="337.0" layoutY="112.0" mnemonicParsing="false" onAction="#lbUser" prefHeight="146.0" prefWidth="276.0" style="-fx-background-radius: 10px;" text="User Vacination Status" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Cambria Bold" size="26.0" />
+         </font></Button>
+      <Button fx:id="logoutBt" layoutX="712.0" layoutY="36.0" mnemonicParsing="false" onAction="#onclickBt" prefHeight="84.0" prefWidth="181.0" style="-fx-background-radius: 10PX;" text="LOGOUT" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Cambria Bold" size="30.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

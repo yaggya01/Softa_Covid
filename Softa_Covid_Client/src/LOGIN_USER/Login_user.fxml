@@ -6,7 +6,6 @@
 
 <AnchorPane prefHeight="768.0" prefWidth="1024.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_USER.LoginUser">
    <children>
-<<<<<<< HEAD
       <Pane layoutX="224.0" layoutY="61.0" prefHeight="604.0" prefWidth="553.0" style="-fx-background-color: #CEE8C2; -fx-background-radius: 20px;">
          <children>
             <Label layoutX="67.0" layoutY="35.0" prefHeight="77.0" prefWidth="195.0" text="USERNAME">
@@ -20,7 +19,7 @@
                   <Font name="System Bold" size="37.0" />
                </font>
             </Label>
-            <TextField fx:id="OTF" layoutX="67.0" layoutY="254.0" prefHeight="46.0" prefWidth="271.0" />
+            <TextField fx:id="OTF" layoutX="73.0" layoutY="398.0" prefHeight="46.0" prefWidth="271.0" />
             <Button fx:id="btotp" layoutX="363.0" layoutY="254.0" mnemonicParsing="false" onAction="#lb" prefHeight="46.0" prefWidth="139.0" text="Generate OTP">
                <font>
                   <Font size="17.0" />
@@ -31,24 +30,19 @@
                   <Font name="Cambria Bold" size="36.0" />
                </font>
             </Label>
-            <PasswordField fx:id="PASSTF" layoutX="67.0" layoutY="398.0" prefHeight="46.0" prefWidth="271.0" />
             <Button fx:id="lgbt" layoutX="242.0" layoutY="471.0" mnemonicParsing="false" onAction="#lbt" prefHeight="57.0" prefWidth="139.0" text="Login">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
+            <PasswordField fx:id="PASSTF" layoutX="73.0" layoutY="254.0" prefHeight="46.0" prefWidth="271.0" />
          </children>
       </Pane>
-=======
-      <PasswordField fx:id="PASSTF" layoutX="216.0" layoutY="200.0" />
-      <TextField fx:id="UTF" layoutX="216.0" layoutY="118.0" />
-      <Label layoutX="215.0" layoutY="86.0" prefHeight="18.0" prefWidth="90.0" text="Username" />
-      <Label layoutX="216.0" layoutY="168.0" text="PASSWORD" />
-      <TextField fx:id="OTF" layoutX="216.0" layoutY="319.0" />
-      <Label layoutX="215.0" layoutY="294.0" prefHeight="18.0" prefWidth="78.0" text="Enter OTP" />
-      <Button fx:id="btotp" layoutX="244.0" layoutY="248.0" mnemonicParsing="false" onAction="#lb" text="Generate OTP" />
-      <Button fx:id="lgbt" layoutX="266.0" layoutY="350.0" mnemonicParsing="false" onAction="#lbt" text="Login" />
->>>>>>> e68869b11d5dcd0af74c617bb389cb49502c3a79
       <Label fx:id="lb_verified" layoutX="224.0" layoutY="345.0" prefHeight="36.0" prefWidth="129.0" />
+      <Button fx:id="backButton" layoutX="41.0" layoutY="36.0" mnemonicParsing="false" onAction="#onClickBack" prefHeight="86.0" prefWidth="109.0" style="-fx-background-radius: 40px;" text="🔙">
+         <font>
+            <Font name="Cambria" size="46.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

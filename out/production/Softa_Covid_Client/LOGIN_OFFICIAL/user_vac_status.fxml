@@ -2,14 +2,38 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.user_vac_status">
+<AnchorPane prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.user_vac_status">
    <children>
-      <TextField fx:id="UTF" layoutX="226.0" layoutY="78.0" />
-      <Label layoutX="227.0" layoutY="47.0" prefHeight="18.0" prefWidth="149.0" text="Username" />
-      <Button fx:id="updateBT" layoutX="268.0" layoutY="289.0" mnemonicParsing="false" onAction="#BTupdate" prefHeight="26.0" prefWidth="89.0" text="Update" />
-      <Button fx:id="status_bt" layoutX="418.0" layoutY="78.0" mnemonicParsing="false" onAction="#btStatus" prefHeight="26.0" prefWidth="90.0" text="Get Staus" />
-      <TextArea fx:id="txtarea" layoutX="202.0" layoutY="129.0" prefHeight="126.0" prefWidth="200.0" />
-      <Label fx:id="lable" layoutX="268.0" layoutY="351.0" prefHeight="17.0" prefWidth="90.0" text="Label" />
+      <Pane layoutX="232.0" layoutY="73.0" opacity="0.47" prefHeight="592.0" prefWidth="488.0" style="-fx-background-color: #AAF687; -fx-background-radius: 10px;" />
+      <TextField fx:id="UTF" layoutX="266.0" layoutY="154.0" prefHeight="53.0" prefWidth="268.0" />
+      <Label layoutX="266.0" layoutY="65.0" prefHeight="88.0" prefWidth="418.0" text="USERNAME">
+         <font>
+            <Font name="Cambria Bold" size="26.0" />
+         </font></Label>
+      <Button fx:id="updateBT" layoutX="380.0" layoutY="523.0" mnemonicParsing="false" onAction="#BTupdate" prefHeight="54.0" prefWidth="190.0" text="UPDATE">
+         <font>
+            <Font name="Cambria Bold" size="26.0" />
+         </font></Button>
+      <Button fx:id="status_bt" layoutX="568.0" layoutY="152.0" mnemonicParsing="false" onAction="#btStatus" prefHeight="54.0" prefWidth="115.0" text="Get Staus">
+         <font>
+            <Font name="Cambria Bold" size="19.0" />
+         </font></Button>
+      <TextArea fx:id="txtarea" layoutX="266.0" layoutY="217.0" prefHeight="291.0" prefWidth="418.0" />
+      <Label fx:id="lable" layoutX="266.0" layoutY="601.0" prefHeight="54.0" prefWidth="418.0">
+         <font>
+            <Font name="Cambria Bold" size="26.0" />
+         </font></Label>
+      <Label layoutX="255.0" layoutY="14.0" prefHeight="54.0" prefWidth="488.0" text="UPDATE USER VACCINATION STATUS" textAlignment="CENTER">
+         <font>
+            <Font name="Cambria Bold" size="26.0" />
+         </font>
+      </Label>
+      <Button fx:id="backBt" layoutX="50.0" layoutY="41.0" mnemonicParsing="false" onAction="#onclickBack" style="-fx-background-radius: 40px;" text="🔙">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

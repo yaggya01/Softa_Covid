@@ -4,10 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1024.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_USER.LoginUser">
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.Login">
     <children>
       <Pane layoutX="278.0" layoutY="98.0" opacity="0.3" prefHeight="561.0" prefWidth="364.0" style="-fx-background-color: #CEE8C2; -fx-background-radius: 10px;" />
-        <PasswordField fx:id="ETF" layoutX="314.0" layoutY="512.0" prefHeight="46.0" prefWidth="271.0" />
         <TextField fx:id="UTF" layoutX="314.0" layoutY="220.0" prefHeight="46.0" prefWidth="271.0" />
         <Label layoutX="314.0" layoutY="121.0" prefHeight="77.0" prefWidth="195.0" text="USERNAME">
             <font>
@@ -17,7 +16,6 @@
             <font>
                 <Font name="System Bold" size="37.0" />
             </font></Label>
-        <TextField fx:id="PASSTF" layoutX="314.0" layoutY="350.0" prefHeight="46.0" prefWidth="271.0" />
         <Label layoutX="314.0" layoutY="434.0" prefHeight="78.0" prefWidth="204.0" text="EMAIL">
             <font>
                 <Font name="Cambria Bold" size="36.0" />
@@ -27,5 +25,12 @@
                 <Font size="24.0" />
             </font></Button>
         <Label fx:id="lb_verified" layoutX="224.0" layoutY="345.0" prefHeight="36.0" prefWidth="129.0" />
+      <Button fx:id="backBt" layoutX="41.0" layoutY="45.0" mnemonicParsing="false" onAction="#onClickBack" prefHeight="90.0" prefWidth="108.0" style="-fx-background-radius: 40px;" text="🔙">
+         <font>
+            <Font name="Cambria Bold" size="46.0" />
+         </font>
+      </Button>
+        <PasswordField fx:id="PASSTF" layoutX="315.0" layoutY="358.0" prefHeight="46.0" prefWidth="271.0" />
+        <TextField fx:id="ETF" layoutX="316.0" layoutY="504.0" prefHeight="46.0" prefWidth="271.0" />
     </children>
 </AnchorPane>

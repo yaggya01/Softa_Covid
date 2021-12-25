@@ -5,49 +5,91 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomePage.HomePage">
-   <Label layoutX="242.0" layoutY="76.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="90.0" text="Name" />
-   <Label layoutX="238.0" layoutY="146.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="107.0" text="First Dose Status" />
-   <Label layoutX="238.0" layoutY="181.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="107.0" text="Second Dose Status" />
-   <Label layoutX="242.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="90.0" text="Email" />
-   <Label layoutX="231.0" layoutY="295.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="90.0" text="Number" />
-   <Label fx:id="idProofWarningLabel" layoutX="333.0" layoutY="264.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="392.0" text="-" textFill="#a73636" />
-   <Label layoutX="212.0" layoutY="230.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="90.0" text="Id Proof" />
-   <Label fx:id="secondDoseStatusLabel" layoutX="386.0" layoutY="177.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="303.0" text="-" />
-   <Label fx:id="firstDoseStatusLabel" layoutX="387.0" layoutY="142.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="303.0" text="-" />
-   <Label fx:id="nameLabel" layoutX="386.0" layoutY="72.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="303.0" text="-" />
-   <Label fx:id="emailLabel" layoutX="386.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="303.0" text="-" />
-   <Label fx:id="numberLabel" layoutX="389.0" layoutY="293.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="266.0" text="-" />
-   <Button fx:id="choosePhotoButton" layoutX="68.0" layoutY="217.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#choosePhotoButtonAction" prefHeight="26.0" prefWidth="90.0" text="Choose Photo">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomePage.HomePage">
+   <Pane layoutX="258.0" layoutY="369.0" opacity="0.16" prefHeight="218.0" prefWidth="450.0" style="-fx-background-color: #1A8A8C; -fx-background-radius: 10px;" />
+   <Pane layoutX="13.0" layoutY="33.0" opacity="0.29" prefHeight="330.0" prefWidth="239.0" style="-fx-background-color: #3FD1BE; -fx-background-radius: 10px;" />
+   <Pane layoutX="261.0" layoutY="33.0" opacity="0.29" prefHeight="330.0" prefWidth="450.0" style="-fx-background-color: #D8DEEF; -fx-background-radius: 10px;" />
+   <Label layoutX="288.0" layoutY="60.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="131.0" text="Name">
+      <font>
+         <Font name="Cambria Bold" size="15.0" />
+      </font></Label>
+   <Label layoutX="288.0" layoutY="142.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="131.0" text="First Dose Status" wrapText="true">
+      <font>
+         <Font name="Cambria Bold" size="15.0" />
+      </font></Label>
+   <Label layoutX="288.0" layoutY="177.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="140.0" text="Second Dose Status" wrapText="true">
+      <font>
+         <Font name="Cambria Bold" size="15.0" />
+      </font></Label>
+   <Label layoutX="289.0" layoutY="103.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="131.0" text="Email">
+      <font>
+         <Font name="Cambria Bold" size="15.0" />
+      </font></Label>
+   <Label fx:id="idProofWarningLabel" layoutX="420.0" layoutY="251.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="392.0" textFill="#a73636" />
+   <Label fx:id="secondDoseStatusLabel" layoutX="428.0" layoutY="177.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="294.0" text="-" />
+   <Label fx:id="firstDoseStatusLabel" layoutX="428.0" layoutY="142.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="294.0" text="-" />
+   <Label fx:id="nameLabel" layoutX="428.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="294.0" text="-" />
+   <Label fx:id="emailLabel" layoutX="428.0" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="294.0" text="-" />
+   <Hyperlink fx:id="downloadCertificateLink" alignment="CENTER" layoutX="359.0" layoutY="469.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#downloadCertificateAction" prefHeight="67.0" prefWidth="266.0" style="-fx-background-color: #CE2C12; -fx-background-radius: 10px;" text="Download Certificate" textFill="#ede7e7">
+      <font>
+         <Font name="Cambria Bold" size="24.0" />
+      </font></Hyperlink>
+   <Button fx:id="chooseIdProofButton" layoutX="445.0" layoutY="247.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseIdProofButtonAction" prefHeight="26.0" prefWidth="75.0" text="Choose File">
       <font>
          <Font size="10.0" />
       </font>
    </Button>
-   <Hyperlink fx:id="downloadIdProofLink" alignment="CENTER" layoutX="316.0" layoutY="226.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#downloadIdProofAction" prefHeight="26.0" prefWidth="124.0" text="Download" />
-   <Hyperlink fx:id="downloadCertificateLink" alignment="CENTER" layoutY="368.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#downloadCertificateAction" prefHeight="35.0" prefWidth="238.0" text="Download Certificate" />
-   <Button fx:id="chooseIdProofButton" layoutX="471.0" layoutY="226.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseIdProofButtonAction" prefHeight="26.0" prefWidth="75.0" text="Choose File">
+   <Button fx:id="uploadIdProofButton" layoutX="553.0" layoutY="247.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#uploadIdProofButtonAction" prefHeight="26.0" prefWidth="90.0" text="Upload Id Proof">
       <font>
          <Font size="10.0" />
       </font>
    </Button>
-   <Button fx:id="uploadIdProofButton" layoutX="569.0" layoutY="226.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#uploadIdProofButtonAction" prefHeight="26.0" prefWidth="90.0" text="Upload Id Proof">
+   <Button fx:id="logoutButton" contentDisplay="CENTER" layoutX="738.0" layoutY="33.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logoutButtonAction" prefHeight="67.0" prefWidth="183.0" style="-fx-background-radius: 10px;" text="Log Out" textAlignment="CENTER" textFill="#cf154d">
       <font>
-         <Font size="10.0" />
-      </font>
-   </Button>
-   <Button fx:id="logoutButton" contentDisplay="CENTER" layoutX="607.0" layoutY="23.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logoutButtonAction" prefHeight="35.0" prefWidth="75.0" text="Log Out" textAlignment="CENTER" textFill="#cf154d" />
-   <Button fx:id="uploadPhotoButton" layoutX="68.0" layoutY="262.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#uploadPhotoButtonAction" prefHeight="26.0" prefWidth="90.0" text="Upload Photo">
-      <font>
-         <Font size="10.0" />
-      </font>
-   </Button>
-   <ImageView fx:id="photoImageView" fitHeight="150.0" fitWidth="200.0" layoutX="32.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+         <Font name="Cambria Bold" size="30.0" />
+      </font></Button>
+   <ImageView fx:id="photoImageView" fitHeight="218.0" fitWidth="245.0" layoutX="24.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@man.png" />
       </image>
    </ImageView>
-   <Button fx:id="searchSlotsButton" layoutX="314.0" layoutY="442.0" mnemonicParsing="false" onAction="#searchSlotsButtonAction" text="Search Slots" />
-   <Button fx:id="cancel_button" layoutX="581.0" layoutY="373.0" mnemonicParsing="false" onAction="#cancel_booking" text="Button" />
-   <Label layoutX="236.0" layoutY="377.0" text="Booking Status" />
-   <Label fx:id="booking_status_label" layoutX="384.0" layoutY="373.0" prefHeight="26.0" prefWidth="173.0" text="-" />
+   <Button fx:id="searchSlotsButton" layoutX="383.0" layoutY="637.0" mnemonicParsing="false" onAction="#searchSlotsButtonAction" prefHeight="67.0" prefWidth="183.0" style="-fx-background-radius: 10px;" text="Search Slots" textAlignment="CENTER" wrapText="true">
+      <font>
+         <Font name="Cambria Bold" size="26.0" />
+      </font></Button>
+   <Button fx:id="cancel_button" layoutX="738.0" layoutY="382.0" mnemonicParsing="false" onAction="#cancel_booking" prefHeight="67.0" prefWidth="131.0" text="CANCLE">
+      <font>
+         <Font name="Cambria Bold" size="22.0" />
+      </font></Button>
+   <Label layoutX="278.0" layoutY="399.0" prefHeight="34.0" prefWidth="131.0" text="Booking Status">
+      <font>
+         <Font name="Cambria Bold" size="15.0" />
+      </font></Label>
+   <Button fx:id="choosePhotoButton" layoutX="73.0" layoutY="326.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#choosePhotoButtonAction" prefHeight="33.0" prefWidth="118.0" style="-fx-background-radius: 5px;" text="Choose Photo">
+      <font>
+         <Font name="System Bold" size="10.0" />
+      </font>
+   </Button>
+   <Button fx:id="uploadPhotoButton" layoutX="73.0" layoutY="285.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#uploadPhotoButtonAction" prefHeight="34.0" prefWidth="118.0" style="-fx-background-radius: 5px;" text="Upload Photo">
+      <font>
+         <Font name="System Bold" size="10.0" />
+      </font>
+   </Button>
+   <Label layoutX="290.0" layoutY="209.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="131.0" text="Number">
+      <font>
+         <Font name="Cambria Bold" size="15.0" />
+      </font>
+   </Label>
+   <Label layoutX="288.0" layoutY="243.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="131.0" text="Id Proof">
+      <font>
+         <Font name="Cambria Bold" size="15.0" />
+      </font>
+   </Label>
+   <Label fx:id="booking_status_label" layoutX="410.0" layoutY="401.0" prefHeight="34.0" prefWidth="294.0" text="-" />
+   <Hyperlink fx:id="downloadIdProofLink" alignment="CENTER" layoutX="288.0" layoutY="292.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#downloadIdProofAction" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #CE2C12; -fx-background-radius: 5px;" text="Download" textFill="WHITE">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Hyperlink>
+   <Label fx:id="numberLabel" layoutX="426.0" layoutY="208.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="294.0" text="-" />
 </AnchorPane>

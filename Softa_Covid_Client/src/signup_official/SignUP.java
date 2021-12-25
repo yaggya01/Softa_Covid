@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.Controller;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -21,6 +22,7 @@ import static java.lang.Thread.sleep;
 
 public class SignUP {
     public Button signup_button;
+    public Button backBt;
     public TextField username_textfield;
     public TextField number_textfield;
     public TextField email_textfield;
@@ -70,5 +72,21 @@ public class SignUP {
             e.printStackTrace();
         }
 
+    }
+
+    public void onClickBack(ActionEvent actionEvent)throws Exception {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        "../sample/sample.fxml"
+                )
+        );
+
+        Stage stage = (Stage) backBt.getScene().getWindow();
+//            stage.hide();
+        stage.setScene(
+                new Scene(loader.load(),950, 740)
+        );
+        Controller controller = loader.getController();
+        controller.initSample();
     }
 }

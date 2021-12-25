@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import sample.Controller;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -285,17 +286,21 @@ public class HomePage {
         return name.substring(name.lastIndexOf("."));
     }
 
-    public void logoutButtonAction(ActionEvent actionEvent) throws IOException {
-        user = null;
-        Parent root=null;
+    public void logoutButtonAction(ActionEvent actionEvent) throws Exception {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        "../sample/sample.fxml"
+                )
+        );
+
         Stage stage = (Stage) nameLabel.getScene().getWindow();
-        try{
-            root = FXMLLoader.load(getClass().getResource("../sample/sample.fxml"));
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        stage.setScene(new Scene(root,600, 400));
+//            stage.hide();
+        stage.setScene(
+                new Scene(loader.load(),950, 740)
+        );
+        stage.show();
+        Controller controller = loader.getController();
+        controller.initSample();
     }
 
     public void searchSlotsButtonAction(ActionEvent actionEvent) {
@@ -306,7 +311,7 @@ public class HomePage {
                             "../SearchByUser/SearchByUser.fxml"
                     )
             );
-            stage.setScene(new Scene(loader.load(),600, 400));
+            stage.setScene(new Scene(loader.load(),950, 740));
             SearchByUser controller = loader.getController();
             controller.initSearchByUserData(user);
         }

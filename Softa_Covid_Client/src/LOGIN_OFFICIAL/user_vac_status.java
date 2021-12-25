@@ -4,7 +4,12 @@ import Message.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import sample.Controller;
 
 import java.io.*;
 import java.io.ObjectInputStream;
@@ -17,6 +22,7 @@ public class user_vac_status {
     public TextField UTF;
     public TextArea txtarea;
     public Label lable;
+    public Button backBt;
     public String username="";
     Status_Message vac;
     Socket socket;
@@ -102,5 +108,17 @@ public class user_vac_status {
             }
 
         }).start();
+    }
+
+    public void onclickBack(ActionEvent actionEvent)throws Exception {
+        Parent root=null;
+        Stage stage = (Stage) backBt.getScene().getWindow();
+        try{
+            root = FXMLLoader.load(getClass().getResource("./dashBoard_official.fxml"));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        stage.setScene(new Scene(root,950, 740));
     }
 }

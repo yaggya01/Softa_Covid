@@ -4,17 +4,20 @@ package LOGIN_USER;
 import HomePage.HomePage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import Message.*;
 import javafx.stage.Stage;
+import sample.Controller;
 
 public class LoginUser{
     public Button btotp;
@@ -24,6 +27,10 @@ public class LoginUser{
     public TextField PASSTF;
     public Socket socket;
     public Label lb_verified;
+
+    public Button backButton;
+
+
     Message_otp m;
     ObjectInputStream oi=null;
     public void lb(javafx.event.ActionEvent actionEvent)throws Exception {
@@ -81,5 +88,24 @@ public class LoginUser{
         else{
             lb_verified.setText("Wrong OTP :(");
         }
+    }
+
+    public void onClickBack(ActionEvent actionEvent) throws Exception {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        "../sample/sample.fxml"
+                )
+        );
+
+        Stage stage = (Stage) lb_verified.getScene().getWindow();
+//            stage.hide();
+        stage.setScene(
+                new Scene(loader.load(),950, 740)
+        );
+        Controller controller = loader.getController();
+        controller.initSample();
+
+
+
     }
 }
