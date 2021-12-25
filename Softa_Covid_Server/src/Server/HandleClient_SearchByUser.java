@@ -252,7 +252,7 @@ public class HandleClient_SearchByUser implements Runnable {
                             preSat4.setString(3, m.vaccine_name);
                             preSat4.setInt(4, count_done+1);
                             preSat4.setInt(5, m.hid);
-                            preSat4.setInt(6, 1);
+                            preSat4.setInt(6, 0);
                             java.sql.Timestamp date2 = new java.sql.Timestamp(new java.util.Date().getTime());
                             preSat4.setTimestamp(7, date2);
                             preSat4.execute();
@@ -270,20 +270,82 @@ public class HandleClient_SearchByUser implements Runnable {
                 }else if(m.which_operation == SearchMessage.job.cancel_booking){
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
-                    String q4 = "delete from doses where username = ";
-                    q4 += '"';
-                    q4 += m.user.getUsername();
-                    q4 += '"';
-                    q4 += " and done = 2";
-                    q4 += ';';
-                    System.out.println(q4);
-                    PreparedStatement preSat4;
-                    preSat4 = connection.prepareStatement(q4);
-                    preSat4.executeUpdate();
-                    User obj = new User(m.user);
-                    obj.setBooking_status("none");
-                    op.writeObject(obj);
-                    op.flush();
+                    // getting the hid and vaccine name to update later
+                    String q = "Select * from doses where username=";
+                    q = q + '"';
+                    q = q + m.user.getUsername();
+                    q = q + '"';
+                    q = q + ';';
+                    System.out.println(q);
+                    PreparedStatement preSat;
+                    preSat = connection.prepareStatement(q);
+                    ResultSet rs = preSat.executeQuery();
+                    int done=-1, hid=-1;String vaccine_name = "";
+                    if(rs.next()){
+                        hid = rs.getInt("hid");
+                        vaccine_name = rs.getString("vaccine_name");
+                        done = rs.getInt("done");
+                        if(done == 0){
+                            String q4 = "delete from doses where username = ";
+                            q4 += '"';
+                            q4 += m.user.getUsername();
+                            q4 += '"';
+                            q4 += " and done = 0";
+                            q4 += ';';
+                            System.out.println(q4);
+                            PreparedStatement preSat4;
+                            preSat4 = connection.prepareStatement(q4);
+                            preSat4.executeUpdate();
+                            // updating the waitlist and making one of the as booked
+                            String q2 = "Select * from doses where hid=";
+                            q2 = q2 + hid;
+                            q2 = q2 + " and vaccine_name = ";
+                            q2 = q2 + '"';
+                            q2 = q2 + vaccine_name;
+                            q2 = q2 + '"';
+                            q2 = q2 + " and done = 2 order by date desc";
+                            q2 = q2 + ';';
+                            System.out.println(q2);
+                            PreparedStatement preSat2;
+                            preSat2 = connection.prepareStatement(q2);
+                            ResultSet rs2 = preSat2.executeQuery();
+                            if(rs2.next()){
+                                String user_name = rs2.getString("username");
+                                System.out.println(user_name);
+                                String q3 = "update doses set done = 0 where username = ";
+                                q3 += '"';
+                                q3 += user_name;
+                                q3 += '"';
+                                q3 += ';';
+                                PreparedStatement preSat3;
+                                preSat3 = connection.prepareStatement(q3);
+                                preSat3.executeUpdate();
+                            }
+                            User obj = new User(m.user);
+                            obj.setBooking_status("none");
+                            op.writeObject(obj);
+                            op.flush();
+                        }else if(done == 2){
+                            String q4 = "delete from doses where username = ";
+                            q4 += '"';
+                            q4 += m.user.getUsername();
+                            q4 += '"';
+                            q4 += ';';
+                            System.out.println(q4);
+                            PreparedStatement preSat4;
+                            preSat4 = connection.prepareStatement(q4);
+                            preSat4.executeUpdate();
+                            User obj = new User(m.user);
+                            obj.setBooking_status("none");
+                            op.writeObject(obj);
+                            op.flush();
+                        }
+                    }else{
+                        User obj = new User(m.user);
+                        obj.setBooking_status("none");
+                        op.writeObject(obj);
+                        op.flush();
+                    }
                 }
                 else{
                     String url = "jdbc:mysql://localhost:3306/Covid";
