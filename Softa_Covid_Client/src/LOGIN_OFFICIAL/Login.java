@@ -24,7 +24,7 @@ public class Login{
     public TextField PASSTF;
     public TextField ETF;
     public Socket socket;
-//    public Label lb;
+    public Label lb;
     Message_otp m;
     ObjectInputStream oi=null;
 
@@ -42,7 +42,7 @@ public class Login{
             oi = new ObjectInputStream(socket.getInputStream());
             m= (Message_otp) oi.readObject();
             System.out.println("OTP: " + m.otp);
-            if(m.otp>2){
+            if(m.otp>=1000){
                 Parent root=null;
                 Stage stage = (Stage) lbt.getScene().getWindow();
                 try{
@@ -54,9 +54,9 @@ public class Login{
                 stage.setScene(new Scene(root,950, 740));
 
             }else if(m.otp == 2){
-//                lable.setText("Password is not correct");
+                lb.setText("Password is not correct");
             }else{
-//                lable.setText("username not found");
+                lb.setText("username not found");
             }
         }
         catch(IOException e) {

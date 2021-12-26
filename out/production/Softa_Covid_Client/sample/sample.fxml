@@ -42,7 +42,7 @@
                <font>
                   <Font name="Cambria Bold" size="24.0" />
                </font></Label>
-                <Button fx:id="initBT" layoutX="68.0" layoutY="152.0" mnemonicParsing="false" onAction="#Linit" prefHeight="104.0" prefWidth="129.0" text="OFFICIAL SIGNUP" textAlignment="CENTER" wrapText="true">
+                <Button fx:id="signup_official_button" layoutX="68.0" layoutY="152.0" mnemonicParsing="false" onAction="#signup_official" prefHeight="104.0" prefWidth="129.0" text="OFFICIAL SIGNUP" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Cambria Bold" size="21.0" />
                </font></Button>

@@ -52,7 +52,7 @@ public class HandleClient_Username implements Runnable {
                             int columnCount = metadata.getColumnCount();
                             if (m.password.equals(g)) {
                                 Random rand = new Random();
-                                int otp= rand.nextInt(9999);
+                                int otp= rand.nextInt(9999-1000)+1000;
                                 JavaMailUtil.sendMail(result.getString("Email"),otp);
                                 User user = getUser(result);
                                 String q2 = "Select * from doses where username=";

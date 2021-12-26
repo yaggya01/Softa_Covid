@@ -28,7 +28,10 @@
             <Font name="Cambria Bold" size="33.0" />
          </font></Label>
       <Button fx:id="Sbutton" layoutX="382.0" layoutY="649.0" mnemonicParsing="false" onAction="#sAction" prefHeight="61.0" prefWidth="215.0" style="-fx-background-radius: 50px;" text="Sign Up" />
-      <Label fx:id="lable" layoutX="150.0" layoutY="373.0" prefHeight="38.0" prefWidth="149.0" />
+      <Label fx:id="lable" layoutX="711.0" layoutY="365.0" prefHeight="154.0" prefWidth="286.0" wrapText="true">
+         <font>
+            <Font name="Cambria Bold" size="30.0" />
+         </font></Label>
       <TextField fx:id="UTF" layoutX="346.0" layoutY="58.0" prefHeight="62.0" prefWidth="286.0" />
       <Label layoutX="347.0" prefHeight="62.0" prefWidth="191.0" text="Username">
          <font>
