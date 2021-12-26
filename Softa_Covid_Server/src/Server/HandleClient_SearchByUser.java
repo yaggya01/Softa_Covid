@@ -118,6 +118,14 @@ public class HandleClient_SearchByUser implements Runnable {
                         if(rs.next()){
                             count_done = rs.getInt("count(*)");  // count of vaccines taken by him
                         }
+                        q = "Select max(did) from doses;";
+                        System.out.println(q);
+                        preSat = connection.prepareStatement(q);
+                        rs = preSat.executeQuery();
+                        int max_did=1;
+                        if(rs.next()){
+                            max_did = rs.getInt("max(did)");  // maximum did
+                        }
                         q = "Select count(*) from doses where username=";
                         q = q + '"';
                         q = q + m.user.getUsername();
@@ -212,7 +220,7 @@ public class HandleClient_SearchByUser implements Runnable {
                             q4 = "Insert into doses values (?,?,?,?,?,?,?)";
                             preSat4 = connection.prepareStatement(q4);
                             preSat4.setString(1, m.user.getUsername());
-                            preSat4.setLong(2, count_of_doses+1);
+                            preSat4.setLong(2, max_did+1);
                             preSat4.setString(3, m.vaccine_name);
                             preSat4.setInt(4, count_done+1);
                             preSat4.setInt(5, m.hid);
@@ -248,7 +256,7 @@ public class HandleClient_SearchByUser implements Runnable {
                             q4 = "Insert into doses values (?,?,?,?,?,?,?)";
                             preSat4 = connection.prepareStatement(q4);
                             preSat4.setString(1, m.user.getUsername());
-                            preSat4.setLong(2, count_of_doses+1);
+                            preSat4.setLong(2, max_did+1);
                             preSat4.setString(3, m.vaccine_name);
                             preSat4.setInt(4, count_done+1);
                             preSat4.setInt(5, m.hid);
@@ -346,6 +354,57 @@ public class HandleClient_SearchByUser implements Runnable {
                         op.writeObject(obj);
                         op.flush();
                     }
+                }else if(m.which_operation == SearchMessage.job.update_vaccine){
+                    int increase=m.no_of_vaccines;
+                    String url = "jdbc:mysql://localhost:3306/Covid";
+                    Connection connection = DriverManager.getConnection(url, "root", "");
+                    String q = "Select * from doses where vaccine_name=";
+                    q = q + '"';
+                    q = q + m.vaccine_name;
+                    q = q + '"';
+                    q = q + " and hid=";
+                    q = q + m.hid;
+                    q = q + " and done = 2 order by date desc";
+                    q = q + ';';
+                    System.out.println(q);
+                    PreparedStatement preSat;
+                    preSat = connection.prepareStatement(q);
+                    ResultSet rs = preSat.executeQuery();
+                    Boolean f=false;
+                    while(rs.next()){
+                        if(increase <= 0) break;
+                        f=true;
+                        increase--;
+                        String username = rs.getString("username");
+                        String q3 = "update doses set done = 0 where username = ";
+                        q3 += '"';
+                        q3 += username;
+                        q3 += '"';
+                        q3 += ';';
+                        System.out.println(q3);
+                        PreparedStatement preSat3;
+                        preSat3 = connection.prepareStatement(q3);
+                        preSat3.executeUpdate();
+                    }
+                    if(increase>0){
+                        String q3 = "update vaccine_cnt set remaining = remaining +  ";
+                        q3 += increase;
+                        q3 += " where hid = ";
+                        q3 += m.hid;
+                        q3 += " and vaccine_name = ";
+                        q3 += '"';
+                        q3 += m.vaccine_name;
+                        q3 += '"';
+                        q3 += ';';
+                        System.out.println(q3);
+                        PreparedStatement preSat3;
+                        preSat3 = connection.prepareStatement(q3);
+                        preSat3.executeUpdate();
+                    }
+                    Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.update_vaccine, "done", "", null);
+                    if(f == false) obj.StatusOfBookingOperation = "not done";
+                    op.writeObject(obj);
+                    op.flush();
                 }
                 else{
                     String url = "jdbc:mysql://localhost:3306/Covid";

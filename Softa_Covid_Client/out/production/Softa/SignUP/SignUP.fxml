@@ -2,20 +2,42 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUP.SignUP">
+<AnchorPane prefHeight="746.0" prefWidth="1024.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUP.SignUP">
    <children>
-      <TextField fx:id="NTF" layoutX="226.0" layoutY="120.0" />
-      <TextField fx:id="ETF" layoutX="225.0" layoutY="165.0" />
-      <TextField fx:id="PhTF" layoutX="226.0" layoutY="213.0" />
-      <TextField fx:id="PASSTF" layoutX="226.0" layoutY="257.0" />
-      <Label layoutX="225.0" layoutY="103.0" text="Name" />
-      <Label layoutX="225.0" layoutY="147.0" text="Email" />
-      <Label layoutX="226.0" layoutY="191.0" prefHeight="18.0" prefWidth="56.0" text="Phone" />
-      <Label layoutX="227.0" layoutY="239.0" prefHeight="18.0" prefWidth="56.0" text="Password" />
-      <Button fx:id="Sbutton" layoutX="261.0" layoutY="292.0" mnemonicParsing="false" onAction="#sAction" prefHeight="38.0" prefWidth="77.0" text="Sign Up" />
-      <Label fx:id="lable" layoutX="225.0" layoutY="348.0" prefHeight="38.0" prefWidth="149.0" />
-      <TextField fx:id="UTF" layoutX="226.0" layoutY="78.0" />
-      <Label layoutX="225.0" layoutY="61.0" text="Username" />
+      <Pane layoutX="289.0" layoutY="9.0" prefHeight="705.0" prefWidth="407.0" style="-fx-background-color: rgba(219, 245, 178, 0.5); -fx-background-radius: 20px;" />
+      <TextField fx:id="NTF" layoutX="345.0" layoutY="176.0" prefHeight="62.0" prefWidth="286.0" />
+      <TextField fx:id="ETF" layoutX="345.0" layoutY="310.0" prefHeight="62.0" prefWidth="286.0" />
+      <TextField fx:id="PhTF" layoutX="346.0" layoutY="441.0" prefHeight="62.0" prefWidth="286.0" />
+      <TextField fx:id="PASSTF" layoutX="346.0" layoutY="574.0" prefHeight="62.0" prefWidth="285.0" />
+      <Label layoutX="347.0" layoutY="121.0" prefHeight="62.0" prefWidth="191.0" text="Name">
+         <font>
+            <Font name="Cambria Bold" size="33.0" />
+         </font></Label>
+      <Label layoutX="347.0" layoutY="239.0" prefHeight="70.0" prefWidth="191.0" text="Email">
+         <font>
+            <Font name="Cambria Bold" size="33.0" />
+         </font></Label>
+      <Label layoutX="347.0" layoutY="373.0" prefHeight="70.0" prefWidth="191.0" text="Phone">
+         <font>
+            <Font name="Cambria Bold" size="33.0" />
+         </font></Label>
+      <Label layoutX="347.0" layoutY="504.0" prefHeight="69.0" prefWidth="191.0" text="Password">
+         <font>
+            <Font name="Cambria Bold" size="33.0" />
+         </font></Label>
+      <Button fx:id="Sbutton" layoutX="382.0" layoutY="649.0" mnemonicParsing="false" onAction="#sAction" prefHeight="61.0" prefWidth="215.0" style="-fx-background-radius: 50px;" text="Sign Up" />
+      <Label fx:id="lable" layoutX="150.0" layoutY="373.0" prefHeight="38.0" prefWidth="149.0" />
+      <TextField fx:id="UTF" layoutX="346.0" layoutY="58.0" prefHeight="62.0" prefWidth="286.0" />
+      <Label layoutX="347.0" prefHeight="62.0" prefWidth="191.0" text="Username">
+         <font>
+            <Font name="Cambria Bold" size="33.0" />
+         </font></Label>
+      <Button fx:id="backBt" layoutX="36.0" layoutY="31.0" mnemonicParsing="false" onAction="#backAction" prefHeight="77.0" prefWidth="90.0" style="-fx-background-radius: 40px;" text="🔙" textAlignment="CENTER">
+         <font>
+            <Font name="Cambria Bold" size="35.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

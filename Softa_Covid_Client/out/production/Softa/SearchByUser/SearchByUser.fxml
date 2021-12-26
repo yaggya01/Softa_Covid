@@ -2,23 +2,47 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SearchByUser.SearchByUser">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SearchByUser.SearchByUser">
     <children>
-        <Label fx:id="StateLabel" layoutX="43.0" layoutY="76.0" prefHeight="17.0" prefWidth="45.0" text="State" />
-        <Label fx:id="CityLabel" layoutX="283.0" layoutY="76.0" text="City" />
-        <TextField fx:id="city_name" layoutX="336.0" layoutY="72.0" />
-        <TextField fx:id="state_name" layoutX="97.0" layoutY="72.0" />
-        <Button fx:id="searchbtn" layoutX="433.0" layoutY="105.0" mnemonicParsing="false" onAction="#Searching" text="Search" />
-        <Label fx:id="NotFoundLabel" layoutX="33.0" layoutY="118.0" prefHeight="17.0" prefWidth="127.0" />
-      <Button fx:id="backbtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Back" />
-      <TextArea fx:id="txtarea" layoutX="7.0" layoutY="142.0" prefHeight="84.0" prefWidth="517.0" />
-      <TextField fx:id="HIDTF" layoutX="66.0" layoutY="247.0" />
-      <TextField fx:id="VacTF" layoutX="310.0" layoutY="247.0" />
-      <Button fx:id="bookbtn" layoutX="222.0" layoutY="286.0" mnemonicParsing="false" onAction="#Booking" text="BOOK" />
-      <Label layoutX="29.0" layoutY="251.0" text="HID" />
-      <Label layoutX="263.0" layoutY="251.0" text="Vaccine" />
-      <Label fx:id="status_label" layoutX="232.0" layoutY="18.0" prefHeight="17.0" prefWidth="250.0" />
-      <Label fx:id="book_label" layoutX="396.0" layoutY="278.0" prefHeight="17.0" prefWidth="113.0" />
+      <Label fx:id="label" layoutX="353.0" layoutY="606.0" prefHeight="78.0" prefWidth="518.0">
+         <font>
+            <Font name="Calibri Bold" size="38.0" />
+         </font></Label>
+      <HBox layoutX="132.0" layoutY="26.0" opacity="0.58" prefHeight="568.0" prefWidth="740.0" style="-fx-background-color: #CEE8C2; -fx-background-radius: 10px;" />
+        <Label fx:id="StateLabel" layoutX="194.0" layoutY="35.0" prefHeight="58.0" prefWidth="102.0" text="State">
+         <font>
+            <Font name="Cambria Bold" size="26.0" />
+         </font></Label>
+        <Label fx:id="CityLabel" layoutX="458.0" layoutY="27.0" prefHeight="58.0" prefWidth="102.0" text="City">
+         <font>
+            <Font name="Cambria Bold" size="26.0" />
+         </font></Label>
+        <TextField fx:id="city_name" layoutX="453.0" layoutY="106.0" prefHeight="58.0" prefWidth="238.0" />
+        <TextField fx:id="state_name" layoutX="194.0" layoutY="106.0" prefHeight="58.0" prefWidth="237.0" />
+        <Button fx:id="searchbtn" layoutX="751.0" layoutY="81.0" mnemonicParsing="false" onAction="#Searching" prefHeight="47.0" prefWidth="102.0" style="-fx-background-radius: 50px;" text="🔍">
+         <font>
+            <Font name="Cambria Bold" size="26.0" />
+         </font></Button>
+      <Button fx:id="backbtn" layoutX="42.0" layoutY="36.0" mnemonicParsing="false" onAction="#go_back" prefHeight="57.0" prefWidth="74.0" style="-fx-background-radius: 40px;" text="🔙">
+         <font>
+            <Font name="Cambria Bold" size="28.0" />
+         </font></Button>
+      <TextArea fx:id="txtarea" layoutX="194.0" layoutY="175.0" prefHeight="270.0" prefWidth="518.0" />
+      <TextField fx:id="HIDTF" layoutX="194.0" layoutY="514.0" prefHeight="58.0" prefWidth="238.0" />
+      <TextField fx:id="VacTF" layoutX="456.0" layoutY="514.0" prefHeight="58.0" prefWidth="238.0" />
+      <Button fx:id="bookbtn" layoutX="161.0" layoutY="604.0" mnemonicParsing="false" onAction="#Booking" prefHeight="84.0" prefWidth="167.0" style="-fx-background-radius: 10px;" text="BOOK">
+         <font>
+            <Font name="Cambria Bold" size="26.0" />
+         </font></Button>
+      <Label layoutX="194.0" layoutY="454.0" prefHeight="58.0" prefWidth="102.0" text="HID">
+         <font>
+            <Font name="Cambria Bold" size="26.0" />
+         </font></Label>
+      <Label layoutX="458.0" layoutY="454.0" prefHeight="58.0" prefWidth="102.0" text="Vaccine">
+         <font>
+            <Font name="Cambria Bold" size="26.0" />
+         </font></Label>
     </children>
 </AnchorPane>

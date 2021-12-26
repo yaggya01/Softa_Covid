@@ -9,11 +9,12 @@ public class SearchMessage implements Serializable{
      *
      */
     public enum job{
-        initialize, search_slots, book_slots,cancel_booking
+        initialize, search_slots, book_slots,cancel_booking, update_vaccine
     }
     public String city;
     public String state;
     public int hid;
+    public int no_of_vaccines;
     public String vaccine_name;
     public User user;
     public job which_operation;
@@ -23,7 +24,8 @@ public class SearchMessage implements Serializable{
         if(b == 0) which_operation = job.initialize;
         else if(b==1) which_operation=job.search_slots;
         else if(b==2) which_operation = job.book_slots;
-        else which_operation = job.cancel_booking;
+        else if(b==3) which_operation = job.cancel_booking;
+        else which_operation = job.update_vaccine;
     }
     public String toString(){
         return String.format("State: %s  City: %s  ",state,city);
