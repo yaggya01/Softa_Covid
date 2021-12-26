@@ -118,7 +118,7 @@ public class HomePage {
 
     public void choosePhotoButtonAction(ActionEvent event) {
         FileChooser fc = new FileChooser();
-        fc.setInitialDirectory(new File("F:\\projects"));
+        fc.setInitialDirectory(new File("C:"));
         fc.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("jpg Files", "*.jpg")
         );
