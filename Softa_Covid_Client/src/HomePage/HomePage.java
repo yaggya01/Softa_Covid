@@ -1,6 +1,7 @@
 package HomePage;
 
 import Message.SearchMessage;
+import NearbyCentres.NearbyCentres;
 import SearchByUser.SearchByUser;
 import User.User;
 import javafx.application.Platform;
@@ -32,6 +33,9 @@ public class HomePage {
 
     @FXML
     private Button uploadPhotoButton;
+
+    @FXML
+    private Button nearbyCentresButton;
 
     @FXML
     private Button cancel_button;
@@ -320,5 +324,21 @@ public class HomePage {
         }
     }
 
+    public void nearbyCentresButtonAction(ActionEvent actionEvent) {
+        Stage stage = (Stage) nameLabel.getScene().getWindow();
+        try{
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "../NearbyCentres/NearbyCentres.fxml"
+                    )
+            );
+            stage.setScene(new Scene(loader.load(),950, 740));
+            NearbyCentres controller = loader.getController();
+            controller.initNearbyCentres();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
 }

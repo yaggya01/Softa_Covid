@@ -53,7 +53,7 @@
          <Image url="@man.png" />
       </image>
    </ImageView>
-   <Button fx:id="searchSlotsButton" layoutX="383.0" layoutY="637.0" mnemonicParsing="false" onAction="#searchSlotsButtonAction" prefHeight="67.0" prefWidth="183.0" style="-fx-background-radius: 10px;" text="Search Slots" textAlignment="CENTER" wrapText="true">
+   <Button fx:id="searchSlotsButton" layoutX="533.0" layoutY="637.0" mnemonicParsing="false" onAction="#searchSlotsButtonAction" prefHeight="67.0" prefWidth="183.0" style="-fx-background-radius: 10px;" text="Search Slots" textAlignment="CENTER" wrapText="true">
       <font>
          <Font name="Cambria Bold" size="26.0" />
       </font></Button>
@@ -92,4 +92,8 @@
       </font>
    </Hyperlink>
    <Label fx:id="numberLabel" layoutX="426.0" layoutY="208.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="294.0" text="-" />
+   <Button fx:id="nearbyCentresButton" layoutX="262.0" layoutY="637.0" mnemonicParsing="false" onAction="#nearbyCentresButtonAction" prefHeight="67.0" prefWidth="183.0" style="-fx-background-radius: 10px;" text="Find Nearby Centres">
+      <font>
+         <Font name="Cambria Bold" size="16.0" />
+      </font></Button>
 </AnchorPane>

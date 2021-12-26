@@ -38,7 +38,7 @@
             <PasswordField fx:id="PASSTF" layoutX="73.0" layoutY="254.0" prefHeight="46.0" prefWidth="271.0" />
          </children>
       </Pane>
-      <Label fx:id="lb_verified" layoutX="224.0" layoutY="345.0" prefHeight="36.0" prefWidth="129.0" />
+      <Label fx:id="lb_verified" layoutX="464.0" layoutY="681.0" prefHeight="36.0" prefWidth="129.0" />
       <Button fx:id="backButton" layoutX="41.0" layoutY="36.0" mnemonicParsing="false" onAction="#onClickBack" prefHeight="86.0" prefWidth="109.0" style="-fx-background-radius: 40px;" text="🔙">
          <font>
             <Font name="Cambria" size="46.0" />
