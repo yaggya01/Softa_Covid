@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomePage.HomePage">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomePage.HomePage">
    <Pane layoutX="258.0" layoutY="369.0" opacity="0.16" prefHeight="218.0" prefWidth="450.0" style="-fx-background-color: #1A8A8C; -fx-background-radius: 10px;" />
    <Pane layoutX="13.0" layoutY="33.0" opacity="0.29" prefHeight="330.0" prefWidth="239.0" style="-fx-background-color: #3FD1BE; -fx-background-radius: 10px;" />
    <Pane layoutX="261.0" layoutY="33.0" opacity="0.29" prefHeight="330.0" prefWidth="450.0" style="-fx-background-color: #D8DEEF; -fx-background-radius: 10px;" />
@@ -92,4 +92,5 @@
       </font>
    </Hyperlink>
    <Label fx:id="numberLabel" layoutX="426.0" layoutY="208.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="294.0" text="-" />
+   <Button fx:id="nearbyCentresButton" layoutX="104.0" layoutY="643.0" mnemonicParsing="false" onAction="#nearbyCentresButtonAction" prefHeight="54.0" prefWidth="162.0" text="Find Nearby Centres" />
 </AnchorPane>
