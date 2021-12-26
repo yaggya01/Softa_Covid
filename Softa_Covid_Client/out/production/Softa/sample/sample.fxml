@@ -3,34 +3,76 @@
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
-   <children>
-      <Pane prefHeight="331.0" prefWidth="420.0">
-         <children>
-            <Button fx:id="logb" layoutX="145.0" layoutY="44.0" mnemonicParsing="false" onAction="#on_log_in" prefHeight="33.0" prefWidth="121.0" text="LOGIN USER" />
-            <Button fx:id="signb" layoutX="285.0" layoutY="44.0" mnemonicParsing="false" onAction="#on_sign_in" prefHeight="33.0" prefWidth="121.0" text="SIGNUP" />
-            <Button fx:id="logo" layoutX="6.0" layoutY="44.0" mnemonicParsing="false" onAction="#on_log_of" prefHeight="33.0" prefWidth="121.0" text="LOGIN OFFICIAL" />
-            <LineChart fx:id="Vaccine_chart" layoutX="49.0" layoutY="113.0" prefHeight="183.0" prefWidth="314.0" title="User Vaccinated Per Day">
-              <xAxis>
-                <CategoryAxis label="Days" side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis label="People" side="LEFT" />
-              </yAxis>
-            </LineChart>
-            <ChoiceBox fx:id="TimeBox" layoutX="130.0" layoutY="283.0" prefWidth="150.0" />
-            <Label layoutX="67.0" layoutY="287.0" prefHeight="17.0" prefWidth="48.0" text="Time" />
-            <Button fx:id="initBT" layoutX="6.0" layoutY="87.0" mnemonicParsing="false" onAction="#Linit" prefHeight="33.0" prefWidth="121.0" text="Initialize" />
-            <Button fx:id="getBT" layoutX="304.0" layoutY="284.0" mnemonicParsing="false" onAction="#BTget" text="GET" />
-            <Button fx:id="signup_official_button" layoutX="290.0" layoutY="91.0" mnemonicParsing="false" onAction="#signup_official" text="SIGNUP_OFFICIAL" />
-         </children>
-      </Pane>
-   </children>
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <Pane prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);">
+            <children>
+            <Pane layoutX="18.0" layoutY="13.0" opacity="0.46" prefHeight="715.0" prefWidth="915.0" style="-fx-background-color: #CEE8C2; -fx-background-radius: 20px;" />
+            <PieChart fx:id="txtbox" layoutX="-257.0" layoutY="347.0" prefHeight="405.0" prefWidth="1084.0" />
+                <Button fx:id="logb" layoutX="220.0" layoutY="30.0" mnemonicParsing="false" onAction="#on_log_in" prefHeight="104.0" prefWidth="129.0" text="LOGIN USER" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Cambria Bold" size="21.0" />
+               </font></Button>
+                <Button fx:id="signb" layoutX="220.0" layoutY="152.0" mnemonicParsing="false" onAction="#on_sign_in" prefHeight="104.0" prefWidth="129.0" text="SIGNUP">
+               <font>
+                  <Font name="Cambria Bold" size="21.0" />
+               </font></Button>
+                <Button fx:id="logo" layoutX="68.0" layoutY="30.0" mnemonicParsing="false" onAction="#on_log_of" prefHeight="104.0" prefWidth="129.0" text="LOGIN OFFICIAL" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Cambria Bold" size="21.0" />
+               </font></Button>
+                <LineChart fx:id="Vaccine_chart" layoutX="519.0" layoutY="30.0" prefHeight="210.0" prefWidth="393.0" title="User Vaccinated Per Day">
+                    <xAxis>
+                        <CategoryAxis label="Days" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="People" side="LEFT" />
+                    </yAxis>
+                </LineChart>
+                <ChoiceBox fx:id="TimeBox" layoutX="641.0" layoutY="244.0" prefHeight="36.0" prefWidth="197.0" />
+                <Label layoutX="519.0" layoutY="251.0" prefHeight="36.0" prefWidth="108.0" text="Time" textAlignment="CENTER">
+               <font>
+                  <Font name="Cambria Bold" size="24.0" />
+               </font></Label>
+                <Button fx:id="initBT" layoutX="68.0" layoutY="152.0" mnemonicParsing="false" onAction="#Linit" prefHeight="104.0" prefWidth="129.0" text="OFFICIAL SIGNUP" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Cambria Bold" size="21.0" />
+               </font></Button>
+                <Button fx:id="getBT" layoutX="845.0" layoutY="244.0" mnemonicParsing="false" onAction="#BTget" prefHeight="36.0" prefWidth="70.0" text="GET">
+               <font>
+                  <Font name="Cambria Bold" size="14.0" />
+               </font></Button>
+            <TextArea fx:id="stateTA" layoutX="622.0" layoutY="420.0" prefHeight="258.0" prefWidth="282.0" />
+            <Button fx:id="stateBT" layoutX="838.0" layoutY="358.0" mnemonicParsing="false" onAction="#stateOnClick" prefHeight="44.0" prefWidth="70.0" text="Filter" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font></Button>
+            <Label layoutX="622.0" layoutY="292.0" prefHeight="73.0" prefWidth="282.0" text="Filter One Province" textAlignment="CENTER">
+               <font>
+                  <Font name="Cambria Bold" size="26.0" />
+               </font></Label>
+            <TextField fx:id="stateTF" layoutX="622.0" layoutY="358.0" prefHeight="44.0" prefWidth="206.0" />
+                <Label alignment="CENTER" layoutX="68.0" layoutY="255.0" prefHeight="73.0" prefWidth="282.0" text="Cases Per Province" textAlignment="CENTER">
+
+                          <font>
+                        <Font name="Cambria Bold" size="26.0" />
+                    </font>
+                </Label>
+            <ChoiceBox fx:id="cases_filter" layoutX="68.0" layoutY="304.0" prefHeight="54.0" prefWidth="282.0" />
+            <Button fx:id="filterBT" layoutX="355.0" layoutY="304.0" mnemonicParsing="false" onAction="#filter_change" prefHeight="54.0" prefWidth="86.0" text="Filter">
+               <font>
+                  <Font name="Cambria Bold" size="18.0" />
+               </font>
+            </Button>
+            </children>
+        </Pane>
+    </children>
 </GridPane>

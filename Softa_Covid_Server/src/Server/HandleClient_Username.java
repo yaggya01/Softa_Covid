@@ -59,13 +59,26 @@ public class HandleClient_Username implements Runnable {
                                 q2 = q2 + '"';
                                 q2 = q2 + m.username;
                                 q2 = q2 + '"';
-                                q2 = q2 + " and done = 2";
+                                q2 = q2 + " and done = 0";
                                 q2 = q2 + ';';
                                 PreparedStatement preSat2;
                                 preSat2 = connection.prepareStatement(q2);
                                 ResultSet result2 = preSat2.executeQuery();
+
+                                String q3 = "Select * from doses where username=";
+                                q3 = q3 + '"';
+                                q3 = q3 + m.username;
+                                q3 = q3 + '"';
+                                q3 = q3 + " and done = 0";
+                                q3 = q3 + ';';
+                                PreparedStatement preSat3;
+                                preSat3 = connection.prepareStatement(q3);
+                                ResultSet result3 = preSat3.executeQuery();
                                 if(result2.next()){
                                     String temp = "1 booking of " + result2.getString("vaccine_name") + " on " + result2.getDate("date");
+                                    user.setBooking_status(temp);
+                                }else if(result3.next()){
+                                    String temp = "1 waitlist of " + result3.getString("vaccine_name") + " on " + result3.getDate("date");
                                     user.setBooking_status(temp);
                                 }
                                 k = new Message_otp(otp, user);
