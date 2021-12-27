@@ -22,6 +22,13 @@ The Vaccination slot reservation application that allows people to to login/sign
 * Gson            : open-source Java library to serialize and deserialize Java objects to JSON.
 * JavaMail        : platform-independent and protocol-independent framework to build mail and messaging applications.
 * MySQL Connector : provides connectivity for java-based client applications.
+ ## Gallery
+![Screenshot](https://github.com/yaggya01/Softa_Covid/blob/master/Softa_Covid_Client/Photos/photo1.png)
+![Screenshot](https://github.com/yaggya01/Softa_Covid/blob/master/Softa_Covid_Client/Photos/photo2.png)
+![Screenshot](https://github.com/yaggya01/Softa_Covid/blob/master/Softa_Covid_Client/Photos/photo3.png)
+![Screenshot](https://github.com/yaggya01/Softa_Covid/blob/master/Softa_Covid_Client/Photos/photo4.png)
+![Screenshot](https://github.com/yaggya01/Softa_Covid/blob/master/Softa_Covid_Client/Photos/photo5.png)
+![Screenshot](https://github.com/yaggya01/Softa_Covid/blob/master/Softa_Covid_Client/Photos/photo6.png)
 
 ## Contributors(from MNNIT for Avishkar-Softablitz-2021) 
 * [Yaggya Garg](https://www.linkedin.com/in/yaggya-garg-08a356202/)
