@@ -61,7 +61,7 @@ public class SignUP{
                 @Override
                 public void run() {
                     try {
-                        if(isValidMobileNo(NTF.getText())&&isValidMobileEmail(ETF.getText())) {
+                        if(isValidMobileNo(PhTF.getText())&&isValidMobileEmail(ETF.getText())) {
                             Message m = new Message(UTF.getText(), NTF.getText(), ETF.getText(), PASSTF.getText(), 0, 1);
                             m.num = Long.parseLong(PhTF.getText());
                             Socket socket = new Socket("localhost", 5400);

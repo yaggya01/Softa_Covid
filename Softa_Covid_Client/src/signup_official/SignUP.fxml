@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="signup_official.SignUP">
+<AnchorPane prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="signup_official.SignUP">
    <children>
       <Pane layoutX="257.0" layoutY="60.0" opacity="0.57" prefHeight="626.0" prefWidth="440.0" style="-fx-background-color: #CEE8C2; -fx-background-radius: 10px;" />
       <TextField fx:id="username_textfield" layoutX="319.0" layoutY="153.0" prefHeight="52.0" prefWidth="310.0" />
@@ -31,7 +31,10 @@
          <font>
             <Font name="Cambria Bold" size="26.0" />
          </font></Button>
-      <Label fx:id="lable" layoutX="265.0" layoutY="365.0" />
+      <Label fx:id="lable" layoutX="712.0" layoutY="240.0" prefHeight="157.0" prefWidth="190.0" wrapText="true">
+         <font>
+            <Font name="Cambria Bold" size="25.0" />
+         </font></Label>
       <Button fx:id="backBt" layoutX="57.0" layoutY="47.0" mnemonicParsing="false" onAction="#onClickBack" style="-fx-background-radius: 40px;" text="🔙">
          <font>
             <Font name="Cambria Bold" size="46.0" />

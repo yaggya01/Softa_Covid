@@ -57,7 +57,7 @@
       <font>
          <Font name="Cambria Bold" size="26.0" />
       </font></Button>
-   <Button fx:id="cancel_button" layoutX="738.0" layoutY="382.0" mnemonicParsing="false" onAction="#cancel_booking" prefHeight="67.0" prefWidth="131.0" text="CANCLE">
+   <Button fx:id="cancel_button" layoutX="738.0" layoutY="382.0" mnemonicParsing="false" onAction="#cancel_booking" prefHeight="67.0" prefWidth="131.0" text="CANCEL">
       <font>
          <Font name="Cambria Bold" size="22.0" />
       </font></Button>

@@ -4,11 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<<<<<<< HEAD
+
 <AnchorPane prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.dashBoard_official">
-=======
-<AnchorPane prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/8.0.261" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.dashBoard_official">
->>>>>>> b754619fc67bd1095fe84a5ef9031097b02328e0
+
    <children>
       <Pane layoutX="235.0" layoutY="115.0" opacity="0.56" prefHeight="568.0" prefWidth="479.0" style="-fx-background-color: #AAF687; -fx-background-radius: 10px;">
          <children>

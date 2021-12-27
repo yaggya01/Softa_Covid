@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.user_vac_status">
+<AnchorPane prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.user_vac_status">
    <children>
       <Pane layoutX="232.0" layoutY="73.0" opacity="0.47" prefHeight="592.0" prefWidth="488.0" style="-fx-background-color: #AAF687; -fx-background-radius: 10px;" />
       <TextField fx:id="UTF" layoutX="266.0" layoutY="154.0" prefHeight="53.0" prefWidth="268.0" />
@@ -16,7 +16,7 @@
          <font>
             <Font name="Cambria Bold" size="26.0" />
          </font></Button>
-      <Button fx:id="status_bt" layoutX="568.0" layoutY="152.0" mnemonicParsing="false" onAction="#btStatus" prefHeight="54.0" prefWidth="115.0" text="Get Staus">
+      <Button fx:id="status_bt" layoutX="568.0" layoutY="152.0" mnemonicParsing="false" onAction="#btStatus" prefHeight="54.0" prefWidth="115.0" text="Get Status">
          <font>
             <Font name="Cambria Bold" size="19.0" />
          </font></Button>
