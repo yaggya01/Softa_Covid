@@ -16,9 +16,12 @@ The Vaccination slot reservation application that allows people to to login/sign
 * Charts showing current covid stats of each area with various filters
 
  ## Technologies/Modules    
-* Java      	: general purpose, concurrent, class-based and object-oriented-programming language.
-* JavaFX    	: GUI Toolkit for Java Based Applications
-* MySQL   	  : Open-source relational database management system  
+* Java      	     : general purpose, concurrent, class-based and object-oriented-programming language.
+* JavaFX    	     : GUI Toolkit for Java Based Applications.
+* MySQL   	       : Open-source relational database management system. 
+* Gson            : open-source Java library to serialize and deserialize Java objects to JSON.
+* JavaMail        : platform-independent and protocol-independent framework to build mail and messaging applications.
+* MySQL Connector : provides connectivity for java-based client applications.
 
 ## Contributors(from MNNIT for Avishkar-Softablitz-2021) 
 * [Yaggya Garg](https://www.linkedin.com/in/yaggya-garg-08a356202/)
