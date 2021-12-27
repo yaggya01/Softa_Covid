@@ -16,7 +16,7 @@ The Vaccination slot reservation application that allows people to to login/sign
 * Charts showing current covid stats of each area with various filters
 
  ## Technologies/Modules    
-* Java      	: Java is a general-purpose computer-programming language that is concurrent, class-based and object-oriented.
+* Java      	: general purpose, concurrent, class-based and object-oriented-programming language.
 * JavaFX    	: GUI Toolkit for Java Based Applications
 * MySQL   	  : Open-source relational database management system  
 
