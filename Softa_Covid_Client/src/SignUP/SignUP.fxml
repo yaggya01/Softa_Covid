@@ -10,7 +10,7 @@
       <TextField fx:id="NTF" layoutX="345.0" layoutY="176.0" prefHeight="62.0" prefWidth="286.0" />
       <TextField fx:id="ETF" layoutX="345.0" layoutY="310.0" prefHeight="62.0" prefWidth="286.0" />
       <TextField fx:id="PhTF" layoutX="346.0" layoutY="441.0" prefHeight="62.0" prefWidth="286.0" />
-      <TextField fx:id="PASSTF" layoutX="346.0" layoutY="574.0" prefHeight="62.0" prefWidth="285.0" />
+      <PasswordField fx:id="PASSTF" layoutX="346.0" layoutY="574.0" prefHeight="62.0" prefWidth="285.0" />
       <Label layoutX="347.0" layoutY="121.0" prefHeight="62.0" prefWidth="191.0" text="Name">
          <font>
             <Font name="Cambria Bold" size="33.0" />

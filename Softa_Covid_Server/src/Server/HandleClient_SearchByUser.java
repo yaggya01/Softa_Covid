@@ -421,7 +421,7 @@ public class HandleClient_SearchByUser implements Runnable {
                     ResultSet rs = preSat.executeQuery();
                     int count_done = 0;
                     if(rs.next()){
-                        rs.getInt("count(*)");  // count of vaccines taken by him
+                        count_done = rs.getInt("count(*)");  // count of vaccines taken by him
                     }
                     q = "Select * from doses where username=";
                     q = q + '"';

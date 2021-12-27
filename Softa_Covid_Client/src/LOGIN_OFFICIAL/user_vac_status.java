@@ -43,8 +43,13 @@ public class user_vac_status {
                         op.writeObject(m);
                         oi = new ObjectInputStream(socket.getInputStream());
                         Status_updated status_update = (Status_updated) oi.readObject();
-                    System.out.println(status_update);
-                        lable.setText(String.valueOf(status_update));
+                        System.out.println(status_update);
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                lable.setText(String.valueOf(status_update));
+                            }
+                        });
 //                        Platform.runLater(new Runnable() {
 //                            @Override
 //                            public void run() {

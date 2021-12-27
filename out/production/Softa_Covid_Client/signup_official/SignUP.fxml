@@ -10,7 +10,7 @@
       <TextField fx:id="username_textfield" layoutX="319.0" layoutY="153.0" prefHeight="52.0" prefWidth="310.0" />
       <TextField fx:id="number_textfield" layoutX="319.0" layoutY="246.0" prefHeight="52.0" prefWidth="310.0" />
       <TextField fx:id="email_textfield" layoutX="319.0" layoutY="340.0" prefHeight="52.0" prefWidth="310.0" />
-      <TextField fx:id="password_textfield" layoutX="319.0" layoutY="434.0" prefHeight="52.0" prefWidth="310.0" />
+      <PasswordField fx:id="password_textfield" layoutX="319.0" layoutY="434.0" prefHeight="52.0" prefWidth="310.0" />
       <Label layoutX="319.0" layoutY="108.0" text="Username">
          <font>
             <Font name="Cambria Bold" size="36.0" />

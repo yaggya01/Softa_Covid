@@ -76,14 +76,19 @@ public class SignUP {
                                 lable.setText("Already Taken So try other username");
                             } else {
                                 lable.setText("Successfully official account created");
-                                Parent root = null;
-                                Stage stage = (Stage) signup_button.getScene().getWindow();
-                                try {
-                                    root = FXMLLoader.load(getClass().getResource("../Sample/sample.fxml"));
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                                stage.setScene(new Scene(root, 600, 400));
+                                FXMLLoader loader = new FXMLLoader(
+                                        getClass().getResource(
+                                                "../sample/sample.fxml"
+                                        )
+                                );
+
+                                Stage stage = (Stage) backBt.getScene().getWindow();
+//            stage.hide();
+                                stage.setScene(
+                                        new Scene(loader.load(),950, 740)
+                                );
+                                Controller controller = loader.getController();
+                                controller.initSample();
                             }
                             op.flush();
                             op.close();

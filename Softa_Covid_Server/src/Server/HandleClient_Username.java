@@ -280,7 +280,7 @@ public class HandleClient_Username implements Runnable {
                     preSat = connection.prepareStatement(q);
                     ResultSet result = preSat.executeQuery();
                     if(result.next()) {
-                        JavaMailUtil.sendMail(result.getString(result.getString("Email")), 10000);
+                        JavaMailUtil.sendMail(result.getString("Email"), 10000);
                     }
 
                 }
