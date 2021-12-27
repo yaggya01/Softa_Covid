@@ -32,7 +32,6 @@ public class Controller {
     public Button getBT;
     public ChoiceBox TimeBox;
     public ChoiceBox cases_filter;
-    public Button initBT;
     public Button signup_official_button;
     public Button filterBT;
     public LineChart Vaccine_chart;
@@ -151,23 +150,17 @@ public class Controller {
             deaths28Days=s;
         }
     }
-    public void Linit(ActionEvent actionEvent)throws  Exception{
-        System.out.println("SignIN");
-        Parent root=null;
-        Stage stage = (Stage) logb.getScene().getWindow();
-        try{
-            root = FXMLLoader.load(getClass().getResource("../signup_official/SignUP.fxml"));
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        stage.setScene(new Scene(root,950, 740));
-    }
     public void BTget(ActionEvent actionEvent)throws Exception{
         new Thread(new Runnable() {
             @Override
             public void run() {
                 if(TimeBox.getValue().equals("All Time")){
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            Vaccine_chart.getData().clear();
+                        }
+                    });
                     Message m = new Message("","","","",0,4);
                     try {
                         Socket socket = new Socket("localhost",5400);
@@ -178,6 +171,7 @@ public class Controller {
                         Message_Time_Graph k =(Message_Time_Graph) oi.readObject();
                         XYChart.Series series1 = new XYChart.Series();
                         series1.setName("Series 1");
+
                         for(int i=0;i<k.num;i++){
                             System.out.println(k.a[i][0]+" "+k.a[i][1]);
                             series1.getData().add(new XYChart.Data<>(Integer.toString(i), Integer.parseInt(k.a[i][1])));
@@ -195,6 +189,13 @@ public class Controller {
 
                 }
                 else if(TimeBox.getValue().equals("30 Days")){
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            Vaccine_chart.getData().clear();
+                        }
+                    });
+
                     Message m = new Message("","","","",1,4);
                     try {
                         Socket socket = new Socket("localhost",5400);
@@ -221,6 +222,12 @@ public class Controller {
 
                 }
                 else if(TimeBox.getValue().equals("One Week")){
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            Vaccine_chart.getData().clear();
+                        }
+                    });
                     Message m = new Message("","","","",2,4);
                     try {
                         Socket socket = new Socket("localhost",5400);

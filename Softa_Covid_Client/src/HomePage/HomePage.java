@@ -122,7 +122,7 @@ public class HomePage {
 
     public void choosePhotoButtonAction(ActionEvent event) {
         FileChooser fc = new FileChooser();
-        fc.setInitialDirectory(new File("F:\\projects"));
+        fc.setInitialDirectory(new File("C:"));
         fc.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("jpg Files", "*.jpg")
         );
@@ -332,7 +332,7 @@ public class HomePage {
                             "../NearbyCentres/NearbyCentres.fxml"
                     )
             );
-            stage.setScene(new Scene(loader.load(),1000, 1000));
+            stage.setScene(new Scene(loader.load(),950, 740));
             NearbyCentres controller = loader.getController();
             controller.initNearbyCentres();
         }

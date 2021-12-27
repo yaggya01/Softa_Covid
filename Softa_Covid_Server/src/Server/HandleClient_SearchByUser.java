@@ -402,7 +402,7 @@ public class HandleClient_SearchByUser implements Runnable {
                         preSat3.executeUpdate();
                     }
                     Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.update_vaccine, "done", "", null);
-                    if(f == false) obj.StatusOfBookingOperation = "not done";
+//                     if(f == false) obj.StatusOfBookingOperation = "not done";
                     op.writeObject(obj);
                     op.flush();
                 }
