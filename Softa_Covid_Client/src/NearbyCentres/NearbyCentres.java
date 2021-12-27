@@ -18,9 +18,9 @@ public class NearbyCentres {
     public void initNearbyCentres() {
         nearbyWidgetWebView.setZoom(0.5);
         webEngine = nearbyWidgetWebView.getEngine();
-//        webEngine.load((getClass().getResource("/NearbyCentres/NearbyWidget.html")).toString());
-        webEngine.load("https://www.google.com");
+        webEngine.load((getClass().getResource("/NearbyCentres/NearbyWidget.html")).toString());
 //        webEngine.executeScript(getClass().getResource("/NearbyCentres/NearbyWidget.js").toString());
+//        webEngine.load("https://www.google.com/maps/@22.5574912,88.3785728,12z");
     }
 
 }

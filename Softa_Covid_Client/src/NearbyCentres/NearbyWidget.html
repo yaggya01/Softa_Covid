@@ -10,6 +10,14 @@
     <!-- define the div into which the nearby COVID places widget from MapmyIndia needs to be loaded -->
     <div id="nearby-covid-places-mapmyindia"></div>
 
+    <button onclick="myFunction()">Try it</button>
+
+    <script>
+        function myFunction() {
+          alert("I am an alert box!");
+        }
+    </script>
+
     <!-- call the following code AFTER the mapmyindia javascript file has loaded -->
     <script type="text/javascript">
             loadNearbyCovidCentresMapmyIndiaDiv(document.getElementById("nearby-covid-places-mapmyindia"));

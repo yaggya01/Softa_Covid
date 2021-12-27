@@ -11,6 +11,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import java.util.Vector;
 
 public class HandleClient_Username implements Runnable {
     final private Socket socket;
@@ -81,6 +82,38 @@ public class HandleClient_Username implements Runnable {
                                     String temp = "1 waitlist of " + result3.getString("vaccine_name") + " on " + result3.getDate("date");
                                     user.setBooking_status(temp);
                                 }
+
+                                String q4 = "Select d.*,h.name from doses d,hospital h where username=";
+                                q4 = q4 + '"';
+                                q4 = q4 + m.username;
+                                q4 = q4 + '"';
+                                q4 = q4 + " and done = 1 and d.hid=h.hid";
+                                q4 = q4 + " order by date";
+                                q4 = q4 + ';';
+                                PreparedStatement preSat4;
+                                preSat4 = connection.prepareStatement(q4);
+                                ResultSet result4 = preSat4.executeQuery();
+
+                                Vector<Vector<String>> doses = new Vector<Vector<String>>();
+                                while(result4.next()) {
+                                    Vector<String> td = new Vector<String>();
+                                    td.add(result4.getString("vaccine_name"));
+                                    td.add(result4.getString("which_dose"));
+                                    td.add(result4.getDate("date").toString());
+                                    td.add(result4.getString("name"));
+                                    doses.add(td);
+                                    System.out.println(result4.getString("vaccine_name") + " " + result4.getString("which_dose") + " " + result4.getDate("date") + " " + result4.getString("name"));
+                                }
+                                user.setDoses(doses);
+
+                                if(result2.next()){
+                                    String temp = "1 booking of " + result2.getString("vaccine_name") + " on " + result2.getDate("date");
+                                    user.setBooking_status(temp);
+                                }else if(result3.next()){
+                                    String temp = "1 waitlist of " + result3.getString("vaccine_name") + " on " + result3.getDate("date");
+                                    user.setBooking_status(temp);
+                                }
+
                                 k = new Message_otp(otp, user);
                                 int cnt=0;
 
@@ -249,7 +282,7 @@ public class HandleClient_Username implements Runnable {
                     if(result.next()) {
                         JavaMailUtil.sendMail(result.getString(result.getString("Email")), 10000);
                     }
-                    
+
                 }
                 else if(m.t==Message.job.Time){
                     String url = "jdbc:mysql://localhost:3306/Covid";

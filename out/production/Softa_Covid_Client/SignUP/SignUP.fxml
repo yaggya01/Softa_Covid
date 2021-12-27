@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="746.0" prefWidth="1024.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUP.SignUP">
+<AnchorPane prefHeight="746.0" prefWidth="1024.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUP.SignUP">
    <children>
       <Pane layoutX="289.0" layoutY="9.0" prefHeight="705.0" prefWidth="407.0" style="-fx-background-color: rgba(219, 245, 178, 0.5); -fx-background-radius: 20px;" />
       <TextField fx:id="NTF" layoutX="345.0" layoutY="176.0" prefHeight="62.0" prefWidth="286.0" />

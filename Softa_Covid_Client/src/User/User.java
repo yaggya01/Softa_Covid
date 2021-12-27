@@ -1,11 +1,13 @@
 package User;
 
 import java.io.Serializable;
+import java.util.Vector;
 
 public class User implements Serializable {
 
     private String username, name, number, email, vaccine_status, booking_status;
     private byte[] idProof,photo;
+    private Vector<Vector<String>> doses;
 
     public User() {
         username = "";
@@ -16,6 +18,7 @@ public class User implements Serializable {
         booking_status = "none";
         idProof = null;
         photo = null;
+        doses = null;
     }
 
     public User(String username, String name, String number, String email, byte[] uIdProof, byte[] uPhoto)
@@ -30,6 +33,19 @@ public class User implements Serializable {
         photo = uPhoto;
     }
 
+    public User(String username, String name, String number, String email, byte[] uIdProof, byte[] uPhoto, Vector<Vector<String>> uDoses)
+    {
+        this.username = username;
+        this.name = name;
+        this.number = number;
+        this.email = email;
+        this.vaccine_status = "none";
+        this.booking_status = "none";
+        idProof = uIdProof;
+        photo = uPhoto;
+        doses = uDoses;
+    }
+
     public User(User u)
     {
         username = u.username;
@@ -40,6 +56,7 @@ public class User implements Serializable {
         booking_status = u.booking_status;
         idProof = u.idProof;
         photo = u.photo;
+        doses = u.doses;
     }
     public void setUsername(String username) {
         this.username = username;
@@ -71,6 +88,10 @@ public class User implements Serializable {
         this.photo = photo;
     }
 
+    public void setDoses(Vector<Vector<String>> doses) {
+        this.doses = doses;
+    }
+
 
     public String getName() {
         return name;
@@ -95,6 +116,10 @@ public class User implements Serializable {
 
     public byte[] getPhoto() {
         return photo;
+    }
+
+    public Vector<Vector<String>> getDoses() {
+        return doses;
     }
 
     @Override
