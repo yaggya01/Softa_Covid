@@ -3,6 +3,8 @@
 
 The Vaccination slot reservation application that allows people to to login/signup, check avaialabilty, book and cancel slots, download certificate. The application also provides the ability for officials to login/signup, add vaccines and update vaccination status of vaccinated people.
 
+## Demo Video
+[Covi-Katana Youtube](https://youtu.be/N2HocASgAHI)
 ## Features
 * Login/ Signup for users and government officials.
 * OTP based authentication.
