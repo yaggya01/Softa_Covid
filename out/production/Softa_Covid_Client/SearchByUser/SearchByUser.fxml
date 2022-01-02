@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SearchByUser.SearchByUser">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SearchByUser.SearchByUser">
     <children>
       <Label fx:id="label" layoutX="353.0" layoutY="606.0" prefHeight="78.0" prefWidth="518.0">
          <font>
-            <Font name="Calibri Bold" size="38.0" />
+            <Font name="Calibri Bold" size="24.0" />
          </font></Label>
       <HBox layoutX="132.0" layoutY="26.0" opacity="0.58" prefHeight="568.0" prefWidth="740.0" style="-fx-background-color: #CEE8C2; -fx-background-radius: 10px;" />
         <Label fx:id="StateLabel" layoutX="194.0" layoutY="35.0" prefHeight="58.0" prefWidth="102.0" text="State">

@@ -20,7 +20,9 @@ public class JavaMailUtil {
             }
         });
         Message message;
-        if(otp!=10000)
+        if(otp == 20000) {
+            message=prepareMessage2(session,myAccountEmail,recepient,otp);
+        } else if(otp!=10000)
             message=prepareMessage(session,myAccountEmail,recepient,otp);
         else
             message=prepareMessage1(session,myAccountEmail,recepient,otp);
@@ -48,6 +50,20 @@ public class JavaMailUtil {
             message.setRecipient(MimeMessage.RecipientType.TO,new InternetAddress(recepient));
             message.setSubject("Verification email");
             message.setText("You have just been administered with your vaccine doze");
+            return message;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    private static Message prepareMessage2(Session session,String myAccountEmail,String recepient,int otp){
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(myAccountEmail));
+            message.setRecipient(MimeMessage.RecipientType.TO,new InternetAddress(recepient));
+            message.setSubject("Verification email");
+            message.setText("You have just been removed from waitlist and booked a slot");
             return message;
         }
         catch(Exception e){

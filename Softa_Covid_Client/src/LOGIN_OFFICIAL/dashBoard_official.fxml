@@ -4,8 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.dashBoard_official">
+<AnchorPane prefHeight="740.0" prefWidth="950.0" style="-fx-background-image: url(&quot;LOGIN_USER/login.png&quot;);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LOGIN_OFFICIAL.dashBoard_official">
 
    <children>
       <Pane layoutX="235.0" layoutY="115.0" opacity="0.56" prefHeight="568.0" prefWidth="479.0" style="-fx-background-color: #AAF687; -fx-background-radius: 10px;">
@@ -49,5 +48,9 @@
             <Font name="Cambria Bold" size="26.0" />
          </font>
       </Button>
+      <Label fx:id="status_label" layoutX="724.0" layoutY="312.0" prefHeight="139.0" prefWidth="174.0" wrapText="true">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
    </children>
 </AnchorPane>

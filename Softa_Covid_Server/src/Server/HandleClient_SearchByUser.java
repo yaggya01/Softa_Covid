@@ -40,7 +40,7 @@ public class HandleClient_SearchByUser implements Runnable {
             while (true) {
                 SearchMessage m = (SearchMessage) oi.readObject();
                 System.out.println(m);
-                if(m.which_operation == SearchMessage.job.search_slots){
+                if(m.which_operation == SearchMessage.job.search_slots){        //to search slots according to state and city
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     String q = "Select * from HOSPITAL where State=";
@@ -98,10 +98,10 @@ public class HandleClient_SearchByUser implements Runnable {
                     }
                     op.writeObject(obj);
                     op.flush();
-                }else if(m.which_operation == SearchMessage.job.book_slots){
+                }else if(m.which_operation == SearchMessage.job.book_slots){        //booking slot
                     Lock lock = new ReentrantLock(true);
                     try{
-                        lock.lock();
+                        lock.lock();                                            //applying lock
                         String url = "jdbc:mysql://localhost:3306/Covid";
                         Connection connection = DriverManager.getConnection(url, "root", "");
                         String q = "Select count(*) from doses where username=";
@@ -130,7 +130,7 @@ public class HandleClient_SearchByUser implements Runnable {
                         q = q + '"';
                         q = q + m.user.getUsername();
                         q = q + '"';
-                        q = q + " and done IN (0,2)";  // to get bboked or waitlist doses
+                        q = q + " and done IN (0,2)";  // to get booked or waitlist doses
                         q = q + ';';
                         preSat = connection.prepareStatement(q);
                         rs = preSat.executeQuery();
@@ -182,7 +182,7 @@ public class HandleClient_SearchByUser implements Runnable {
                         Date date=java.util.Calendar.getInstance().getTime();
                         int diffInDays = (int) ((date.getTime() - last_date.getTime()) / (1000 * 60 * 60 * 24));
 
-                        System.out.println("countdone= " + count_done + "needed =" + needed + " not done =" + count_notdone + "days diffneeded"+ days_diff + "remaining " +  remaining + " ");
+                        System.out.println("countdone= " + count_done + "needed =" + needed + " not done =" + count_notdone + "days diffneeded"+ days_diff + "remaining " +  remaining + " " + "diffindays = " + diffInDays);
                         System.out.println(last_vaccine + " " + m.vaccine_name);
 
 
@@ -191,7 +191,7 @@ public class HandleClient_SearchByUser implements Runnable {
                             System.out.println(obj.StatusOfBookingOperation);
                             op.writeObject(obj);
                             op.flush();
-                        }else if(count_done>0 && days_diff<(diffInDays)){
+                        }else if(count_done>0 && days_diff>(diffInDays)){
                             Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.book_slots, "wait MORE", "",m.user);
                             System.out.println(obj.StatusOfBookingOperation);
                             op.writeObject(obj);
@@ -203,7 +203,7 @@ public class HandleClient_SearchByUser implements Runnable {
                             op.writeObject(obj);
                             op.flush();
                         }
-                        else if((count_done>0 && last_vaccine != m.vaccine_name)){
+                        else if((count_done>0 && !last_vaccine.equals(m.vaccine_name))){
                             Returned_SearchMessage obj = new Returned_SearchMessage(SearchMessage.job.book_slots, "dont take multiple vaccines", "",m.user);
                             System.out.println(obj.StatusOfBookingOperation);
                             op.writeObject(obj);
@@ -275,7 +275,7 @@ public class HandleClient_SearchByUser implements Runnable {
                         lock.unlock();
                     }
 
-                }else if(m.which_operation == SearchMessage.job.cancel_booking){
+                }else if(m.which_operation == SearchMessage.job.cancel_booking){            //to cancel booking
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     // getting the hid and vaccine name to update later
@@ -354,7 +354,7 @@ public class HandleClient_SearchByUser implements Runnable {
                         op.writeObject(obj);
                         op.flush();
                     }
-                }else if(m.which_operation == SearchMessage.job.update_vaccine){
+                }else if(m.which_operation == SearchMessage.job.update_vaccine){        //to increase number of vaccines
                     int increase=m.no_of_vaccines;
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
@@ -385,6 +385,19 @@ public class HandleClient_SearchByUser implements Runnable {
                         PreparedStatement preSat3;
                         preSat3 = connection.prepareStatement(q3);
                         preSat3.executeUpdate();
+
+
+                        q = "SELECT email from user where username = ";
+                        q = q + '"';
+                        q = q + username;
+                        q = q + '"';
+                        q = q + ';';
+                        System.out.println(q);
+                        preSat = connection.prepareStatement(q);
+                        ResultSet result = preSat.executeQuery();
+                        if(result.next()) {
+                            JavaMailUtil.sendMail(result.getString("Email"), 20000);
+                        }
                     }
                     if(increase>0){
                         String q3 = "update vaccine_cnt set remaining = remaining +  ";
@@ -406,7 +419,7 @@ public class HandleClient_SearchByUser implements Runnable {
                     op.writeObject(obj);
                     op.flush();
                 }
-                else{
+                else{                                                                              // to get the vaccination status of user
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     String q = "Select count(*) from doses where username=";

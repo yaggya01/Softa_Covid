@@ -33,7 +33,7 @@ public class HandleClient_Username implements Runnable {
             while (true) {
                 Message m = (Message) oi.readObject();
                 System.out.println(m);
-                if (m.t == Message.job.login) {
+                if (m.t == Message.job.login) {                                             //to login user
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     if (m.k == 0) {
@@ -51,10 +51,10 @@ public class HandleClient_Username implements Runnable {
                             String g = result.getString("Password");
                             ResultSetMetaData metadata = result.getMetaData();
                             int columnCount = metadata.getColumnCount();
-                            if (m.password.equals(g)) {
+                            if (m.password.equals(g)) {                             //checking password
                                 Random rand = new Random();
                                 int otp= rand.nextInt(9999-1000)+1000;
-                                JavaMailUtil.sendMail(result.getString("Email"),otp);
+                                JavaMailUtil.sendMail(result.getString("Email"),otp);           //sending otp via email
                                 User user = getUser(result);
                                 String q2 = "Select * from doses where username=";
                                 q2 = q2 + '"';
@@ -70,7 +70,7 @@ public class HandleClient_Username implements Runnable {
                                 q3 = q3 + '"';
                                 q3 = q3 + m.username;
                                 q3 = q3 + '"';
-                                q3 = q3 + " and done = 0";
+                                q3 = q3 + " and done = 2";
                                 q3 = q3 + ';';
                                 PreparedStatement preSat3;
                                 preSat3 = connection.prepareStatement(q3);
@@ -128,7 +128,7 @@ public class HandleClient_Username implements Runnable {
                         op.flush();
                     }
                 }
-                else if (m.t == Message.job.signup) {
+                else if (m.t == Message.job.signup) {                                           //for user signup
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     if (m.k == 0) {
@@ -160,7 +160,7 @@ public class HandleClient_Username implements Runnable {
                         op.writeObject(new Message_otp(0));
                         return;
                     }
-                }else if (m.t == Message.job.signup_official) {
+                }else if (m.t == Message.job.signup_official) {                                 //for official signup
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     if (m.k == 0) {
@@ -189,7 +189,7 @@ public class HandleClient_Username implements Runnable {
                         return;
                     }
                 }
-                else if (m.t == Message.job.login_gov) {
+                else if (m.t == Message.job.login_gov) {                                        //login government official
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     if (m.k == 0) {
@@ -227,7 +227,7 @@ public class HandleClient_Username implements Runnable {
                         op.flush();
                     }
                 }
-                else if(m.t == Message.job.Vac_status){
+                else if(m.t == Message.job.Vac_status){                                         //
                     System.out.println("In Vac_status of Handleclient");
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
@@ -288,18 +288,16 @@ public class HandleClient_Username implements Runnable {
                     String url = "jdbc:mysql://localhost:3306/Covid";
                     Connection connection = DriverManager.getConnection(url, "root", "");
                     if(m.k==0){
-                        String q="Select Count(Distinct(Date)) As Ans from doses where done = 1";
+                        String q="Select Count(username) As Ans,date,done from doses group by date having done = 1;";
                         System.out.println(q);
                         PreparedStatement preSat;
                         preSat = connection.prepareStatement(q);
                         ResultSet result = preSat.executeQuery();
                         if(result.next()){
                             Message_Time_Graph k = new Message_Time_Graph(result.getInt("Ans")+2);
-                            q="Select Count(Distinct(username)) as Ans, Date From doses As v where exists( Select Distinct(Date) As Date from doses where done = 1);";
-                            preSat = connection.prepareStatement(q);
-                            result = preSat.executeQuery();
+
                             int i=0;
-                            k.a[i][0]="2021-10-15";
+                            k.a[i][0]="2021-12-21";
                             k.a[i][1]="0";
                             i++;
                             while (result.next()){
@@ -312,42 +310,57 @@ public class HandleClient_Username implements Runnable {
                         }
                     }
                     else if(m.k==1){
-                        Message_Time_Graph k = new Message_Time_Graph(31);
-                        String q="Select Count(Distinct(username)) as Ans, Date From doses As v where exists( Select Distinct(Date) As Date from doses Order by Date DESC);";
+                        String q="Select Count(*) As Ans,date,done from doses group by date having done = 1 and date >";
+                        q+='"';
+                        q+="2021-11-27";
+                        q+='"';
+                        q+=';';
+                        System.out.println(q);
                         PreparedStatement preSat;
                         preSat = connection.prepareStatement(q);
                         ResultSet result = preSat.executeQuery();
-                        int i=0;
-                        k.a[i][0]="2021-10-15";
-                        k.a[i][1]="0";
-                        i++;
-                        while (result.next()&&i<31){
-                            k.a[i][0]=result.getString("Date");
-                            k.a[i][1]=result.getString("Ans");
+                        if(result.next()) {
+                            Message_Time_Graph k = new Message_Time_Graph(31);
+                            int i = 0;
+                            k.a[i][0] = "2021-11-27";
+                            k.a[i][1] = "0";
                             i++;
+                            while (result.next() && i < 31) {
+                                k.a[i][0] = result.getString("Date");
+                                k.a[i][1] = result.getString("Ans");
+                                System.out.println(k.a[i][0] + " " + k.a[i][1]);
+                                i++;
+                            }
+                            k.num = i;
+                            op.writeObject(k);
+                            op.flush();
                         }
-                        k.num=i;
-                        op.writeObject(k);
-                        op.flush();
                     }
                     else if(m.k==2){
-                        Message_Time_Graph k = new Message_Time_Graph(8);
-                        String q="Select Count(Distinct(username)) as Ans, Date From doses As v where exists( Select Distinct(Date) As Date from doese Order by Date DESC);";
+                        String q="Select Count(*) As Ans,date,done from doses group by date having done = 1 and date >";
+                        q+='"';
+                        q+="2021-12-20";
+                        q+='"';
+                        q+=';';
+                        System.out.println(q);
                         PreparedStatement preSat;
                         preSat = connection.prepareStatement(q);
                         ResultSet result = preSat.executeQuery();
-                        int i=0;
-                        k.a[i][0]="2021-10-15";
-                        k.a[i][1]="0";
-                        i++;
-                        while (result.next()&&i<8){
-                            k.a[i][0]=result.getString("Date");
-                            k.a[i][1]=result.getString("Ans");
+                        if(result.next()) {
+                            Message_Time_Graph k = new Message_Time_Graph(31);
+                            int i = 0;
+                            k.a[i][0] = "2021-12-20";
+                            k.a[i][1] = "0";
                             i++;
+                            while (result.next() && i < 8) {
+                                k.a[i][0] = result.getString("Date");
+                                k.a[i][1] = result.getString("Ans");
+                                i++;
+                            }
+                            k.num = i;
+                            op.writeObject(k);
+                            op.flush();
                         }
-                        k.num=i;
-                        op.writeObject(k);
-                        op.flush();
                     }
                 }
             }

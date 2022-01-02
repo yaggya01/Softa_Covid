@@ -85,7 +85,7 @@ public class HandleClient_Upload implements Runnable {
         }
     }
 
-    private void uploadFile(byte[] fileContentBytes, User user, String uploadType) {
+    private void uploadFile(byte[] fileContentBytes, User user, String uploadType) {        //uploading the file to database
         String url = "jdbc:mysql://localhost:3306/Covid";
         String sqlUser = "root";
         String password = "";
